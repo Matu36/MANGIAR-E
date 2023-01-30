@@ -5,7 +5,7 @@ export default function App() {
   return (
     <div className="App">
       <h1>
-        MANGIAR-E!!!
+        MANGIAR-E!!! - Modificado por Yamil Prueba
       </h1>
     </div>
   );
