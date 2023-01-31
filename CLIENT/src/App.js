@@ -7,6 +7,9 @@ export default function App() {
       <h1>
         MANGIAR-E!!!
       </h1>
+      <h2>
+        Yamil
+      </h2>
     </div>
   );
 }
