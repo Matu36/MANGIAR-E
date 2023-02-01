@@ -14,7 +14,7 @@ export default function App() {
       <Route exact path={"/createrecipe"} element={<CreateRecipe />} />
       <Route path="/" element={<LandingPage />} />
       <Route exact path="formUser" element={<CreateUser />} />
-      <Route exact path="/recipes/id" element={<RecipeDetail />} />{" "} {/* ID estático solo para pruebas */}
+      <Route exact path="/recipes/:id" element={<RecipeDetail />} />
     </Routes>
   );
 }

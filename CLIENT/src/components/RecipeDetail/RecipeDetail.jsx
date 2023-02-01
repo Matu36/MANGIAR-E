@@ -1,4 +1,5 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import s from "./RecipeDetail.module.css";
 
@@ -6,6 +7,8 @@ const img =
   "https://3.bp.blogspot.com/-RQ01Qk_X99g/UcBTEr33WNI/AAAAAAAB0U4/itGN1VVChNM/s1600/fotografias-de-comida-china-bufette-chinesse-food-arroz-comida-asiatica-2.jpg";
 
 function RecipeDetail() {
+  const { id } = useParams();
+
   return (
     <div className={s.bigContainer}>
       <NavBar />
@@ -13,7 +16,7 @@ function RecipeDetail() {
         <div className={s.card}>
           <img src={img} className={s.img} alt="recipe" />
           <div className={s.data}>
-            <h2>Nombre Receta</h2>
+            <h2>Nombre Receta con ID: {id}</h2>
             <p>
               <span>Summary: </span> Lorem ipsum dolor sit, amet consectetur
               adipisicing elit. Architecto, nesciunt? Laudantium quam magni
