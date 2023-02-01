@@ -1,10 +1,13 @@
 import "./App.css";
-//import { BrowserRouter, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import Home from "./components/Home/Home.jsx";
+import CreateRecipe from "./components/CreateRecipe/CreateRecipe";
 
 export default function App() {
   return (
-    <div className="App">
-      <h1>MANGIAR-E!!!</h1>
-    </div>
+    <Routes>
+      <Route exact path={"/home"} element={<Home />} />
+      <Route exact path={"/createrecipe"} element={<CreateRecipe />} />
+    </Routes>
   );
 }
