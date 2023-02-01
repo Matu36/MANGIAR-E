@@ -2,7 +2,7 @@ const { Router } = require("express");
 
 const router = Router();
 
-const randomRecipeRouter = require("../controllers/randomRecipeRouter");
+const randomRecipeRouter = require("../controllers/randomRecipe");
 
 //Rutas, Controllers
 //router.get ("/ruta", controller);
