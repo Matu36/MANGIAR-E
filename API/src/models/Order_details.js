@@ -4,22 +4,17 @@ module.exports = sequelize => {
   sequelize.define('Order_details', {
     orderId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      unique: 'order-ingredient'
+      primaryKey: true
     },
     ingredientId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      unique: 'order-ingredient'
+      primaryKey: true
     },
     quantity: {
       type: DataTypes.FLOAT,
       allowNull: false
     }
   }, {
-    timestamps: false,
-    indexes: [{
-      fields: ['orderId']
-    }]
+    timestamps: false
   }).removeAttribute('id');
 };

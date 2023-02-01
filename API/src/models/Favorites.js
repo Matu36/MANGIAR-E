@@ -4,13 +4,11 @@ module.exports = sequelize => {
   sequelize.define('Favorites', {
     userId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      unique: 'user-recipe'
+      primaryKey: true
     },
     recipeId: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: 'user-recipe'
+      type: DataTypes.INTEGER,
+      primaryKey: true
     }
   }, {
     timestamps: false

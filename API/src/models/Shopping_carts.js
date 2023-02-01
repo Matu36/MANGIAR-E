@@ -4,13 +4,11 @@ module.exports = sequelize => {
   sequelize.define('Shopping_carts', {
     userId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      unique: 'user-ingredient'
+      primaryKey: true
     },
     ingredientId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      unique: 'user-ingredient'
+      primaryKey: true
     },
     quantity: {
       type: DataTypes.FLOAT,

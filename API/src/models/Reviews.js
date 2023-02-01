@@ -2,9 +2,13 @@ const { DataTypes } = require('sequelize');
 
 module.exports = sequelize => {
   sequelize.define('Reviews', {
+    userId: {
+      type: DataTypes.INTEGER,
+      primaryKey: true
+    },
     recipeId: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.INTEGER,
+      primaryKey: true
     },
     rate: {
       type: DataTypes.SMALLINT,
@@ -18,5 +22,5 @@ module.exports = sequelize => {
     },
   }, {
     updatedAt: false
-  });
+  }).removeAttribute('id');
 };

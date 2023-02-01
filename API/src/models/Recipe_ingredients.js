@@ -4,13 +4,11 @@ module.exports = sequelize => {
   sequelize.define('Recipe_ingredients', {
     recipeId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      unique: 'recipe-ingredient'
+      primaryKey: true
     },
     ingredientId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      unique: 'recipe-ingredient'
+      primaryKey: true
     },
     quantity: {
       type: DataTypes.FLOAT,
