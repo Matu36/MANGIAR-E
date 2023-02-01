@@ -1,6 +1,5 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import NavBar from "../NavBar/NavBar";
 import s from "./RecipeDetail.module.css";
 
 const img =
@@ -11,7 +10,6 @@ function RecipeDetail() {
 
   return (
     <div className={s.bigContainer}>
-      <NavBar />
       <div className={s.container}>
         <div className={s.card}>
           <img src={img} className={s.img} alt="recipe" />
