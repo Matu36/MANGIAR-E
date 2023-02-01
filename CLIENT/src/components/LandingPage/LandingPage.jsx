@@ -60,7 +60,7 @@ return (
               </div>
             </div>
           ))} 
-        </Slide>
+  </Slide>
    </div>
 <h3>Inicio de Sesión</h3>
 <form onSubmit={(e) => handleSubmit(e)}>
