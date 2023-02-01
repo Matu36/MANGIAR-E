@@ -1,4 +1,4 @@
-module.exports = async ({Users, Orders, Order_details, Shopping_carts, Favorites, Recipes, Recipe_ingredients}) => {
+module.exports = async ({Users, Orders, Order_details, Shopping_carts, Favorites, Recipes, Recipe_ingredients, Recipe_diets}) => {
       ////////////////// Users //////////////////////
   
       await Users.bulkCreate([
@@ -51,7 +51,7 @@ module.exports = async ({Users, Orders, Order_details, Shopping_carts, Favorites
       order = await Orders.create({userId: 1});
       await Order_details.bulkCreate(cart.map(({dataValues}) => ({...dataValues, id: null, orderId: order.dataValues.id})));
 
-      console.log((await Users.findByPk(1, {include: 'Orders', required: false})).toJSON());
+      //console.log((await Users.findByPk(1, {include: 'Orders', required: false})).toJSON());
   
       ///////////////// Favorites (Recipe & User) /////////////////////////////
   
@@ -73,17 +73,20 @@ module.exports = async ({Users, Orders, Order_details, Shopping_carts, Favorites
 //     await Recipe_ingredients.create({recipeId: 5, ingredientId: 5, quantity: 4});
   
 //console.log((await Recipes.findByPk(5, {include: 'Recipe_ingredients'})).toJSON());
-//console.log((await Users.findByPk(1, {include: 'Favorites'})).toJSON());
 
+/*
+console.log('/////////////// Sin include //////////////////', (await Favorites.findAll({where: {userId: 1}})));
+console.log('/////////////// Con include //////////////////', (await Users.findByPk(1, {include: 'Favorites'})).toJSON());
+*/
 
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+      //////////////// Diets /////////////////
 
-/// Revisar OJO!! el include o el setXXX no funciona correctamente en tablas que no tengan id como PK (ej. Favorites)
-/// El include no levanta todos los registros relacionados y el setXXX setea para TODOS los registros de la tabla!!!
+      await Recipe_diets.create({recipeId: 5, diet: 'vegan'});
+      await Recipe_diets.create({recipeId: 5, diet: 'primal'});
+//      await Recipe_diets.create({recipeId: 5, diet: 'primal'});
 
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+//console.log((await Recipes.findByPk(5, {include: 'Recipe_diets'})).toJSON());
+
 
       console.log('Mock agregados a DB!');
     }    

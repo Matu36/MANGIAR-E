@@ -62,6 +62,9 @@ Users.hasMany(Reviews, {foreignKey: 'userId'});
 Recipe_ingredients.belongsTo(Recipes, {foreignKey: 'recipeId'});
 Recipes.hasMany(Recipe_ingredients, {foreignKey: 'recipeId'});
 
+Recipe_diets.belongsTo(Recipes, {foreignKey: 'recipeId'});
+Recipes.hasMany(Recipe_diets, {foreignKey: 'recipeId'});
+
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
