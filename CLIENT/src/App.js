@@ -1,16 +1,16 @@
 import './App.css';
-//import { BrowserRouter, Route } from "react-router-dom";
+import React from 'react';
+import { Routes, Route } from "react-router-dom";
+import LandingPage from "../src/components/LandingPage/LandingPage";
+import CreateUser from './components/FormUser/formUser';
 
 export default function App() {
   return (
-    <div className="App">
-      <h1>
-        MANGIAR-E!!!
-      </h1>
-      <h2>
-        Yamil
-      </h2>
-    </div>
-  );
+<Routes>    
+
+<Route path="/" element={<LandingPage />} />
+<Route exact path="formUser" element={<CreateUser/>} />
+</Routes>  
+);
 }
 
