@@ -32,6 +32,7 @@ adress: "", email: "", password: ""})
 }
 
 return (
+    <div className= {style.container}>
     <div className= {style.form}>
 
 <form onSubmit={(e) => handleSubmit(e)}>
@@ -77,7 +78,7 @@ return (
 
 </form>
 
-
+</div>
 </div>
 )
 
