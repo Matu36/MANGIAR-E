@@ -19,5 +19,5 @@ module.exports = sequelize => {
     }
   }, {
     timestamps: false
-  }).removeAttribute('id');
+  });
 };
