@@ -6,6 +6,13 @@ module.exports = sequelize => {
       type: DataTypes.INTEGER,
       primaryKey: true
     },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
+    },
     instructions: {
       type: DataTypes.TEXT,
       allowNull: false,
@@ -13,17 +20,11 @@ module.exports = sequelize => {
         notEmpty: true
       }
     },
-    title: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-      validate: {
-        notEmpty: true
-      }
-    },
     image: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
+      allowNull: true,
       validate: {
-        isURL: true
+        isUrl: true
       }
     },
   }, {

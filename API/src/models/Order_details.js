@@ -10,9 +10,16 @@ module.exports = sequelize => {
       type: DataTypes.INTEGER,
       primaryKey: true
     },
-    quantity: {
+    amount: {
       type: DataTypes.FLOAT,
       allowNull: false
+    },
+    unit: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
     }
   }, {
     timestamps: false
