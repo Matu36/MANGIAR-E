@@ -3,11 +3,13 @@ import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 import style from "../LandingPage/LandingPage.module.css";
 import { NavLink } from "react-router-dom";
+//import { useState } from "react";
+//import { validate } from "../../utils/validations";
 
 export default function LandingPage () {
     
-        
-      
+  //const [errors, setErrors] = useState({});
+
       const divStyle = {
         display: 'flex',
         alignItems: 'center',
@@ -41,6 +43,15 @@ export default function LandingPage () {
         e.preventDefault();
         setInput ((prev) => ({...prev, [e.target.name] : e.target.value}))
     }
+
+//setErrors (
+  //validate ({
+    //Usuario: input.Usuario,
+    //Contraseña: input.Contraseña,
+  //})
+
+//)
+
     let handleSubmit = (e) => {
         e.preventDefault();
         setInput ({Usuario: "", Contraseña: ""})
@@ -70,9 +81,11 @@ return (
 <label> Usuario </label>
 <input type={"text"} name = {"Usuario"} value = {input.Usuario} 
 onChange= {(e) => letHandleOnChange (e)}/> 
+
 <label> Contraseña </label>
 <input type={"password"} name = {"Contraseña"} value = {input.Contraseña} 
 onChange= {(e) => letHandleOnChange (e)}/> 
+
 
 <br/>
 <br/>
