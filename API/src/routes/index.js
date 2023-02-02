@@ -1,11 +1,9 @@
-const { Router } = require("express");
-
+const { Router } = require('express');
 const router = Router();
+const recipesRouter = require ('./recipes');
+const ingredientsRouter = require ('./ingredients');
 
-//const randomRecipeRouter = require("../controllers/randomRecipe");
-
-//Rutas, Controllers
-//router.get ("/ruta", controller);
-//router.use("/randomRecipe", randomRecipeRouter);
+router.use("/recipes", recipesRouter);
+router.use("/ingredients", ingredientsRouter);
 
 module.exports = router;
