@@ -50,6 +50,9 @@ export default function LandingPage () {
 return (
 
 <div className= {style.container}>
+<h4>
+<NavLink to = {"/home"}>HOME</NavLink>
+</h4>
    <h1 className= {style.tittle}>MANGIAR-E</h1>
 
    <div className= {style.slide}>
@@ -68,7 +71,7 @@ return (
 <input type={"text"} name = {"Usuario"} value = {input.Usuario} 
 onChange= {(e) => letHandleOnChange (e)}/> 
 <label> Contraseña </label>
-<input type={"text"} name = {"Contraseña"} value = {input.Contraseña} 
+<input type={"password"} name = {"Contraseña"} value = {input.Contraseña} 
 onChange= {(e) => letHandleOnChange (e)}/> 
 
 <br/>
