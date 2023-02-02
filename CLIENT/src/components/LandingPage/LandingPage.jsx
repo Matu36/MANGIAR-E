@@ -50,6 +50,9 @@ export default function LandingPage () {
 return (
 
 <div className= {style.container}>
+<h4>
+<NavLink to = {"/home"}>HOME</NavLink>
+</h4>
    <h1 className= {style.tittle}>MANGIAR-E</h1>
 
    <div className= {style.slide}>
@@ -60,7 +63,7 @@ return (
               </div>
             </div>
           ))} 
-        </Slide>
+  </Slide>
    </div>
 <h3>Inicio de Sesión</h3>
 <form onSubmit={(e) => handleSubmit(e)}>
