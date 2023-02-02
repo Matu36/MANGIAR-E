@@ -11,7 +11,6 @@ export const getRecipes = () => {
     dispatch(loadingOn());
     let recipes = await axios.get("/recipes");
     recipes = recipes.data
-    console.log('recetas desde actions: ', recipes)
     return dispatch({ type: "GET_RECIPES", payload: recipes });
   };
 };
