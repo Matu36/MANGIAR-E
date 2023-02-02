@@ -61,9 +61,7 @@ export default function LandingPage () {
 return (
 
 <div className= {style.container}>
-<h4>
-<NavLink to = {"/home"}>HOME</NavLink>
-</h4>
+
    <h1 className= {style.tittle}>MANGIAR-E</h1>
 
    <div className= {style.slide}>
@@ -96,6 +94,11 @@ onChange= {(e) => letHandleOnChange (e)}/>
 
 <h4>
 <NavLink to = {"/formUser"}>Registrarse aquí</NavLink>
+</h4>
+<br />
+
+<h4>
+<NavLink to = {"/home"}>Entrar como Usuario Invitado</NavLink>
 </h4>
 
 </div>
