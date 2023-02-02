@@ -1,7 +1,7 @@
 import React from "react";
-import NavBar from "../NavBar/NavBar";
-import SearchBar from "../SearchBar/searchBar";
-import { healthyTips } from "../healthyTips/healthyTips";
+import NavBar from "../../components/NavBar/NavBar";
+import SearchBar from "../../components/SearchBar/searchBar";
+import { healthyTips } from "../../components/healthyTips/healthyTips";
 
 
 
