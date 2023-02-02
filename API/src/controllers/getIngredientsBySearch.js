@@ -6,15 +6,21 @@ module.exports = (req, res) => {
         [
             {
                 id: 1,
-                name: req.query.search
+                name: req.query.search,
+                price: 1500,
+                units: ['cherry', 'grams']
             },
             {
                 id: 2,
-                name: req.query.search + ' chips'
+                name: req.query.search + ' chips',
+                price: 500.55,
+                units: ['oz', 'small']
             },
             {
                 id: 3,
-                name: 'salad ' + req.query.search
+                name: 'salad ' + req.query.search,
+                price: 3.5,
+                units: ['cups']
             }
         ]
     );

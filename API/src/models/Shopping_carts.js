@@ -10,11 +10,25 @@ module.exports = sequelize => {
       type: DataTypes.INTEGER,
       primaryKey: true
     },
-    quantity: {
+    amount: {
       type: DataTypes.FLOAT,
       allowNull: false
+    },
+    unit: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
     }
   }, {
     timestamps: false
   }).removeAttribute('id');
 };
+
+/*
+                    id: 10716050,
+                    amount: 100,
+                    unitShort: "ml",
+                    unitLarge: "mililiters"
+*/

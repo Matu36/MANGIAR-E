@@ -6,27 +6,29 @@ module.exports = (req, res) => {
     res.send([
         
         {
-            id: 782585,
+            id: req.params.id,
             title: "Cannellini Bean and Asparagus Salad with Mushrooms",
             image: "https://spoonacular.com/recipeImages/782585-312x231.jpg",
+            instructions: "Rinse the cannellini beans and soak for 8 hours or overnight in several inches of water.",
             diets: [
                 "gluten free",
                 "dairy free",
                 "lacto ovo vegetarian",
                 "vegan"
             ],
-            instructions: "Rinse the cannellini beans and soak for 8 hours or overnight in several inches of water.",
             ingredients: [
                 {
                     id: 10716050,
+                    name: 'lechuga',
                     amount: 100,
-                    unitShort: "ml",
-                    unitLarge: "mililiters"
+                    price: 1500,
+                    unit: "mililiters"
                 }, {
-                    id: 14412,
+                    id: 10716050,
+                    name: 'tomate',
                     amount: 150,
-                    unitShort: "ml",
-                    unitLarge: "mililiters"
+                    price: 3000,
+                    unit: "units"
                 }
             ]
         }

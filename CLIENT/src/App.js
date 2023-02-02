@@ -3,7 +3,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "../src/components/LandingPage/LandingPage";
 import CreateUser from "./components/FormUser/formUser";
-import Home from "./components/Home/Home.jsx";
+import Home from "./pages/Home/Home.jsx";
 import CreateRecipe from "./components/CreateRecipe/CreateRecipe";
 import RecipeDetail from "./components/RecipeDetail/RecipeDetail";
 import NavBar from "./components/NavBar/NavBar";

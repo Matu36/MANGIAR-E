@@ -1,7 +1,6 @@
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 const modelsMock = require('./src/helpers/modelsMock.js');
-const Order_details = require('./src/models/Order_details.js');
 
 conn.sync(
   {
