@@ -1,9 +1,17 @@
 import React from "react";
 import NavBar from "../NavBar/NavBar";
 import SearchBar from "../SearchBar/searchBar";
+import { healthyTips } from "../healthyTips/healthyTips";
 
 
 export default function Home () {
+
+    const randomTip = () => {
+    var myArray = healthyTips;
+    var rand = Math.floor(Math.random()*myArray.length);
+    var rValue = myArray[rand];
+    return rValue;
+    }
 
     const handleClick = (e) => {  // Cargar Países
         e.preventDefault();
@@ -17,6 +25,21 @@ export default function Home () {
         <div className>
       <NavBar handleClick= {handleClick} />
       <SearchBar />
+<br />
+<br />
+
+
+<div className="Tip del día">
+    <h2>Tip del Día</h2>
+    <p>{randomTip()}</p>
+    
+    
+
+
+</div>
+
+
+
       </div>
         
         );
