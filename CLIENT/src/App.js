@@ -7,6 +7,10 @@ import Home from "./pages/Home/Home.jsx";
 import CreateRecipe from "./pages/CreateRecipe/CreateRecipe";
 import RecipeDetail from "./pages/RecipeDetail/RecipeDetail";
 import NavBar from "./components/NavBar/NavBar";
+import axios from "axios";
+axios.defaults.baseURL = 'http://localhost:3001/'
+// axios.defaults.baseURL = [insertar URL del back deployado aquí]
+
 
 export default function App() {
   return (
