@@ -4,7 +4,9 @@ import SearchBar from "../SearchBar/searchBar";
 import { healthyTips } from "../healthyTips/healthyTips";
 
 
+
 export default function Home () {
+
 
     const randomTip = () => {
     var myArray = healthyTips;
@@ -30,7 +32,7 @@ export default function Home () {
 
 
 <div className="Tip del día">
-    <h2>Tip del Día</h2>
+    <h4>Tip del Día</h4>
     <p>{randomTip()}</p>
     
     
