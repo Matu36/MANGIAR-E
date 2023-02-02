@@ -1,11 +1,11 @@
 import "./App.css";
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import LandingPage from "../src/components/LandingPage/LandingPage";
+import LandingPage from "../src/pages/LandingPage/LandingPage";
 import CreateUser from "./components/FormUser/formUser";
 import Home from "./pages/Home/Home.jsx";
-import CreateRecipe from "./components/CreateRecipe/CreateRecipe";
-import RecipeDetail from "./components/RecipeDetail/RecipeDetail";
+import CreateRecipe from "./pages/CreateRecipe/CreateRecipe";
+import RecipeDetail from "./pages/RecipeDetail/RecipeDetail";
 import NavBar from "./components/NavBar/NavBar";
 
 export default function App() {
