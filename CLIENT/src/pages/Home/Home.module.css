@@ -1,0 +1,7 @@
+.cardsContainer {
+    padding: 2rem;
+    box-sizing: border-box;
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: space-evenly;
+}
