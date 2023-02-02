@@ -39,7 +39,9 @@ const {
   Reviews,
   Recipes,
   Recipe_ingredients,
-  Recipe_diets
+  Recipe_diets,
+  Ingredients,
+  Ingredient_units
 } = sequelize.models;
 
 // Relaciones
@@ -56,14 +58,32 @@ Users.hasMany(Shopping_carts, {foreignKey: 'userId'});
 Favorites.belongsTo(Users, {foreignKey: 'userId'});
 Users.hasMany(Favorites, {foreignKey: 'userId'});
 
+Favorites.belongsTo(Recipes, {foreignKey: 'recipeId'});
+Recipes.belongsTo(Favorites, {foreignKey: 'recipeId'});
+
 Reviews.belongsTo(Users, {foreignKey: 'userId'});
 Users.hasMany(Reviews, {foreignKey: 'userId'});
+
+Reviews.belongsTo(Recipes, {foreignKey: 'recipeId'});
+Recipes.hasMany(Reviews, {foreignKey: 'recipeId'});
 
 Recipe_ingredients.belongsTo(Recipes, {foreignKey: 'recipeId'});
 Recipes.hasMany(Recipe_ingredients, {foreignKey: 'recipeId'});
 
 Recipe_diets.belongsTo(Recipes, {foreignKey: 'recipeId'});
 Recipes.hasMany(Recipe_diets, {foreignKey: 'recipeId'});
+
+Shopping_carts.belongsTo(Ingredients, {foreignKey: 'ingredientId'});
+Ingredients.hasMany(Shopping_carts, {foreignKey: 'ingredientId'});
+
+Order_details.belongsTo(Ingredients, {foreignKey: 'ingredientId'});
+Ingredients.hasMany(Order_details, {foreignKey: 'ingredientId'});
+
+Recipe_ingredients.belongsTo(Ingredients, {foreignKey: 'ingredientId'});
+Ingredients.hasMany(Recipe_ingredients, {foreignKey: 'ingredientId'});
+
+Ingredient_units.belongsTo(Ingredients, {foreignKey: 'ingredientId'});
+Ingredients.hasMany(Ingredient_units, {foreignKey: 'ingredientId'});
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
