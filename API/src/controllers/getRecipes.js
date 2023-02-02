@@ -17,17 +17,20 @@ module.exports = (req, res) => {
             instructions: "Instrucciones Receta 1",
             ingredients: [
                 {
-                    id: 1,
+                    id: 10716050,
+                    name: 'lechuga',
                     amount: 100,
-                    unitShort: "ml",
-                    unitLarge: "mililiters"
+                    price: 1500,
+                    unit: "mililiters"
                 }, {
-                    id: 2,
+                    id: 10716050,
+                    name: 'tomate',
                     amount: 150,
-                    unitShort: "g",
-                    unitLarge: "grams"
+                    price: 3000,
+                    unit: "units"
                 }
             ]
+
         },
         {
             id: 2,
@@ -40,17 +43,20 @@ module.exports = (req, res) => {
             instructions: "Instrucciones Receta 2",
             ingredients: [
                 {
-                    id: 1,
-                    amount: 200,
-                    unitShort: "ml",
-                    unitLarge: "mililiters"
+                    id: 10716050,
+                    name: 'lechuga',
+                    amount: 100,
+                    price: 1500,
+                    unit: "mililiters"
                 }, {
-                    id: 4,
-                    amount: 300,
-                    unitShort: "g",
-                    unitLarge: "grams"
+                    id: 10716050,
+                    name: 'tomate',
+                    amount: 150,
+                    price: 3000,
+                    unit: "units"
                 }
             ]
+
         },
         {
             id: 3,
@@ -62,18 +68,49 @@ module.exports = (req, res) => {
             instructions: "Instrucciones Receta 3",
             ingredients: [
                 {
-                    id: 6,
+                    id: 10716050,
+                    name: 'lechuga',
                     amount: 100,
-                    unitShort: "ml",
-                    unitLarge: "mililiters"
+                    price: 1500,
+                    unit: "mililiters"
                 }, {
-                    id: 8,
+                    id: 10716050,
+                    name: 'tomate',
                     amount: 150,
-                    unitShort: "g",
-                    unitLarge: "grams"
+                    price: 3000,
+                    unit: "units"
+                }
+            ]
+
+        },
+        {
+            id: 4,
+            title: "Receta 4",
+            image: "https://spoonacular.com/recipeImages/782585-312x231.jpg",
+            instructions: "Rinse the cannellini beans and soak for 8 hours or overnight in several inches of water.",
+            diets: [
+                "gluten free",
+                "dairy free",
+                "lacto ovo vegetarian",
+                "vegan"
+            ],
+            ingredients: [
+                {
+                    id: 10716050,
+                    name: 'lechuga',
+                    amount: 100,
+                    price: 1500,
+                    unit: "mililiters"
+                }, {
+                    id: 10716050,
+                    name: 'tomate',
+                    amount: 150,
+                    price: 3000,
+                    unit: "units"
                 }
             ]
         }
+
         
     ]);
 }
