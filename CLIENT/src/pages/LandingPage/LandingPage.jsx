@@ -61,20 +61,20 @@ export default function LandingPage () {
 return (
 
 <div className= {style.container}>
-<h4>
-<NavLink to = {"/home"}>HOME</NavLink>
-</h4>
-   <h1 className= {style.tittle}>MANGIAR-E</h1>
+  <h4>
+    <NavLink to = {"/home"}>HOME</NavLink>
+  </h4>
+  <h1 className= {style.tittle}>MANGIAR-E</h1>
 
-   <div className= {style.slide}>
-   <Slide>
+    <div className= {style.slide}>
+    <Slide>
          {slideImages.map((slideImage, index)=> (
             <div key={index}>
               <div style={{ ...divStyle, 'backgroundImage': `url(${slideImage.url})` }}>
               </div>
             </div>
           ))} 
-  </Slide>
+    </Slide>
    </div>
 <h3>Inicio de Sesión</h3>
 <form onSubmit={(e) => handleSubmit(e)}>

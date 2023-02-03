@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-//import { useDispatch } from "react-redux";
-//import {  } from "../../actions/index";
-
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchValuesIngredients } from "../../Redux/actions/index.js";
+import { input } from "react-dom";
 
 export default function SearchBar() {
   const [search, setSearch] = useState("");
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleOnChange = (e) => {
     e.preventDefault();
     // dispatch( "" (e.target.value));
-    setSearch(e.target.value)
+    setSearch(e.target.value);
   };
 
   const handleOnClick = (e) => {
@@ -24,9 +24,17 @@ export default function SearchBar() {
     }
   };
 
+  const ingredientsValues = useSelector(
+    (state) => state.searchValuesIngredients
+  );
+  console.log(ingredientsValues);
+  const handleSearchByIngredients = (event) => {
+    if (event.keyCode === 13)
+      dispatch(setSearchValuesIngredients(event.target.value));
+  };
+
   return (
-  
-    <div>
+    <nav className="searchNavBar">
       <form className onSubmit={handleOnClick}>
         <input
           type="text"
@@ -36,6 +44,28 @@ export default function SearchBar() {
           autoComplete="off"
         />
       </form>
-    </div>
+
+      <h1>Filters</h1>
+
+      <input
+        className="searchbaringredients"
+        type="text"
+        placeholder="Search by ingredients"
+        onKeyUp={handleSearchByIngredients}
+      />
+      {ingredientsValues
+        ? ingredientsValues.map((ingredient, index) => {
+            return (
+              <div key={index}>
+                {ingredient}
+                <button>x</button>
+              </div>
+            );
+          })
+        : null}
+      <br></br>
+
+      <hr></hr>
+    </nav>
   );
 }
