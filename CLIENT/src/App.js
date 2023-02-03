@@ -1,13 +1,14 @@
 import "./App.css";
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import LandingPage from "../src/pages/LandingPage/LandingPage";
+
+import LandingPage from "./pages/LandingPage/LandingPage.jsx";
 import CreateUser from "./components/FormUser/formUser";
 import Home from "./pages/Home/Home.jsx";
 import CreateRecipe from "./pages/CreateRecipe/CreateRecipe.jsx";
 import RecipeDetail from "./pages/RecipeDetail/RecipeDetail.jsx";
-import NavBar from "./components/NavBar/NavBar";
 
+import NavBar from "./components/NavBar/NavBar";
 import axios from "axios";
 axios.defaults.baseURL = 'http://localhost:3001/'
 // axios.defaults.baseURL = [insertar URL del back deployado aquí]
