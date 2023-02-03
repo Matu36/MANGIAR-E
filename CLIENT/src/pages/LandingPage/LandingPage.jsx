@@ -98,7 +98,7 @@ onChange= {(e) => letHandleOnChange (e)}/>
 <br />
 
 <h4>
-<NavLink to = {"/home"}>Entrar como Usuario Invitado</NavLink>
+<NavLink to = {"/home"}>Ingresar como Usuario Invitado</NavLink>
 </h4>
 
 </div>

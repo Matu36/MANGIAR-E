@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-//import { useDispatch } from "react-redux";
-//import {  } from "../../actions/index";
-
+import { useDispatch } from "react-redux";
+import { getRecipes } from "../../Redux/actions";
 
 export default function SearchBar() {
   const [search, setSearch] = useState("");
-  //const dispatch = useDispatch();
+const dispatch = useDispatch();
 
   const handleOnChange = (e) => {
     e.preventDefault();
-    // dispatch( "" (e.target.value));
+   //dispatch(getRecipes(e.target.value));
     setSearch(e.target.value)
   };
 
@@ -19,7 +18,7 @@ export default function SearchBar() {
     if (!search) {
       alert("Ingresar nombre de la receta");
     } else {
-      //dispatch(""(search));
+      dispatch(getRecipes(search));
       setSearch("");
     }
   };
@@ -27,7 +26,7 @@ export default function SearchBar() {
   return (
   
     <div>
-      <form className onSubmit={handleOnClick}>
+      <form className="search" onSubmit={handleOnClick}>
         <input
           type="text"
           placeholder="Buscar Receta"
