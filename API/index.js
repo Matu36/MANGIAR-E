@@ -15,6 +15,6 @@ conn
   })
 
   // Inserts de prueba en DB
-  //.then(() => modelsMock(conn.models))
+  .then(() => modelsMock(15)) // nro Api Regs --- 0: ONLY LOCAL
 
   .catch((err) => console.log(err));

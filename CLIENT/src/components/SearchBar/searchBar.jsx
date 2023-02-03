@@ -1,28 +1,67 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchValuesIngredients } from "../../Redux/actions/index.js";
-import { input } from "react-dom";
+import { ReactSearchAutocomplete } from 'react-search-autocomplete';
+import { getRecipes } from "../../Redux/actions/index.js";
+//import { input } from "react-dom";
 
 export default function SearchBar() {
-  const [search, setSearch] = useState("");
+  //const [search, setSearch] = useState("");
   const dispatch = useDispatch();
+  const recipes =  useSelector((state) => state.recipes);
 
-  const handleOnChange = (e) => {
-    e.preventDefault();
+  const mapRecipes = recipes.map((r) => {
+    return {name:r.title}
+});
+
+
+  
+  const handleOnSearch = (string, results) => {
+  console.log(string, results)
+  }
+
+  const handleOnHover = (result) => {
+    console.log(result)
+  }
+
+  const handleOnSelect = (item) => {
+    console.log(item)
+  }
+
+  const handleOnFocus = () => {
+    console.log('Focused')
+  }
+
+  if (!handleOnSearch) {
+    alert ("Ingresar nombre de la receta") }
+  
+
+  const formatResult = (item) => {
+    return (
+      <>
+        <span style={{ display: 'block', textAlign: 'left' }}>id: {item.id}</span>
+        <span style={{ display: 'block', textAlign: 'left' }}>name: {item.name}</span>
+      </>
+    )
+  }
+
+  //const handleOnChange = (e) => {
+    //e.preventDefault();
     // dispatch( "" (e.target.value));
-    setSearch(e.target.value);
-  };
+   // setSearch(e.target.value);
+  //};
 
-  const handleOnClick = (e) => {
-    e.preventDefault();
+  //const handleOnClick = (e) => {
+   // e.preventDefault();
 
-    if (!search) {
+   /* if (!search) {
       alert("Ingresar nombre de la receta");
     } else {
-      //dispatch(""(search));
+      dispatch(getRecipes(search));
       setSearch("");
     }
   };
+*/
 
   const ingredientsValues = useSelector(
     (state) => state.searchValuesIngredients
@@ -35,15 +74,23 @@ export default function SearchBar() {
 
   return (
     <nav className="searchNavBar">
-      <form className onSubmit={handleOnClick}>
-        <input
-          type="text"
-          placeholder="Buscar Receta"
-          onChange={handleOnChange}
-          value={search}
-          autoComplete="off"
-        />
-      </form>
+      <div className="sBar">
+      <header className="sBar-header">
+        <h2> Buscar Recetas </h2>
+        <div style={{ width: 400 }}>
+        <ReactSearchAutocomplete
+            items= {mapRecipes}
+            onSearch={handleOnSearch}
+            onHover={handleOnHover}
+            onSelect={handleOnSelect}
+            onFocus={handleOnFocus}
+            autoFocus
+            formatResult={formatResult}
+          />
+          </div>
+        </header>
+    
+        </div>
 
       <h1>Filters</h1>
 

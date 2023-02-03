@@ -68,7 +68,7 @@ Favorites.belongsTo(Users, { foreignKey: "userId" });
 Users.hasMany(Favorites, { foreignKey: "userId" });
 
 Favorites.belongsTo(Recipes, { foreignKey: "recipeId" });
-Recipes.belongsTo(Favorites, { foreignKey: "recipeId" });
+Recipes.hasMany(Favorites, { foreignKey: "recipeId" });
 
 Reviews.belongsTo(Users, { foreignKey: "userId" });
 Users.hasMany(Reviews, { foreignKey: "userId" });

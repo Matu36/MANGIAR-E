@@ -42,6 +42,7 @@ const rootReducer = (state = initialState, action) => {
           ...initialState.searchValuesIngredients,
           action.payload,
         ],
+
       };
     default:
       return { ...state };
