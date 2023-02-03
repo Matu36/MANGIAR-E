@@ -1,21 +1,20 @@
-const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
-const modelsMock = require('./src/helpers/modelsMock.js');
+const server = require("./src/app.js");
+const { conn, PORT } = require("./src/db.js");
+const modelsMock = require("./src/helpers/modelsMock.js");
 
-conn.sync(
-  {
-    force: true
-//    alter: true
-  }
-)
-.then(async () => {
-  console.log('DB sincronized OK!');
-  server.listen(3001, () => {
-    console.log('Back server listening at 3001'); // eslint-disable-line no-console
-  });
-})
+conn
+  .sync({
+    force: true,
+    //    alter: true
+  })
+  .then(async () => {
+    console.log("DB sincronized OK!");
+    server.listen(PORT, () => {
+      console.log("Back server listening at " + PORT); // eslint-disable-line no-console
+    });
+  })
 
-// Inserts de prueba en DB
-//.then(() => modelsMock(conn.models))
+  // Inserts de prueba en DB
+  //.then(() => modelsMock(conn.models))
 
-.catch(err => console.log(err));
+  .catch((err) => console.log(err));
