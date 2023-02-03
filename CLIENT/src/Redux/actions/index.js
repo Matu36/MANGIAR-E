@@ -1,3 +1,4 @@
+
 // Aca deben declarar las variables donde tengan el action types.
 export const GET_RECIPES = "GET_RECIPES";
 export const GET_RECIPE_DETAIL = "GET_RECIPE_DETAIL";
@@ -40,3 +41,4 @@ export const setSearchValuesIngredients = (searchValuesIngredients) => {
       payload: searchValuesIngredients,
     });
 };
+

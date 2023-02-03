@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import SearchBar from "../../components/SearchBar/searchBar";
@@ -25,6 +26,7 @@ export default function Home() {
     //dispatch(setCurrentPage(1));
     //timer(500);
   };
+
 
   //                Filtro por DIET                  //---------------
 
@@ -84,3 +86,4 @@ export default function Home() {
     </div>
   );
 }
+
