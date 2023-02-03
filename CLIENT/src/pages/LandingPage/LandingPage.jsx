@@ -2,7 +2,7 @@ import React from "react";
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 import style from "../LandingPage/LandingPage.module.css";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 //import { useState } from "react";
 //import { validate } from "../../utils/validations";
 
@@ -62,11 +62,6 @@ return (
 
 <div className= {style.container}>
 
-  <h4>
-    <NavLink to = {"/home"}>HOME</NavLink>
-  </h4>
-  <h1 className= {style.tittle}>MANGIAR-E</h1>
-
 
    <h1 className= {style.tittle}>MANGIAR-E</h1>
 
@@ -99,14 +94,16 @@ onChange= {(e) => letHandleOnChange (e)}/>
 
 </form>
 
-<h4>
-<NavLink to = {"/formUser"}>Registrarse aquí</NavLink>
-</h4>
+<Link to = {"/formUser"}>
+<button className= {style.register}>Registrarse aquí</button>
+</Link>
 <br />
 
-<h4>
-<NavLink to = {"/home"}>Ingresar como Usuario Invitado</NavLink>
-</h4>
+<Link to = {"/home"}>
+<button className= {style.register1}>Ingresar como Invitado</button>
+</Link>
+<br />
+
 
 </div>
 )

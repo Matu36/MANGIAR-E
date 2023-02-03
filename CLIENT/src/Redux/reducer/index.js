@@ -5,6 +5,21 @@ import {
   SET_SEARCH_VALUES_INGREDIENTS,
 } from "../actions/index.js";
 
+const initialState = {
+  recipes: [],
+  recipeDetail: {},
+  diets: [],
+
+  filterByDiet: "All Diets",
+
+  orderBy: {
+    order: "",
+    type: undefined,
+  },
+
+  searchValuesIngredients: [],
+};
+
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_RECIPES:
