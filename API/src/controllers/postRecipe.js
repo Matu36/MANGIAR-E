@@ -30,7 +30,7 @@ const postRecipe = async (req, res) => {
     
     await Recipe_diets.bulkCreate(
       diets.map((el) => ({
-        recipeId: createdRecipe.dataValues.id,
+        recipeId: id,
         diet: el,
       }))
     );
