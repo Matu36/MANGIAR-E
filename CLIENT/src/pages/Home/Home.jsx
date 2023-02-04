@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import s from "./Home.module.css";
 import NavBar from "../../components/NavBar/NavBar";
 import SearchBar from "../../components/SearchBar/searchBar";
@@ -11,6 +12,22 @@ const Home = ({ getRecipes, recipes }) => {
   useEffect(() => {
     getRecipes();
   }, [getRecipes]);
+
+  const recipess =  useSelector((state) => state.recipes);
+
+  const mapImgRecipes = recipess.map((r) => {
+    return {
+      
+      name: r.title,
+      img: r.image}
+});
+
+  const randomImg = () => {
+    var myArray = mapImgRecipes;
+    var rand = Math.floor(Math.random() * myArray.lenght);
+    var rValue = myArray[rand];
+    return rValue;
+  }
 
   const randomTip = () => {
     var myArray = healthyTips;
@@ -42,6 +59,11 @@ const Home = ({ getRecipes, recipes }) => {
       <SearchBar />
       <br />
       <br />
+
+      <div className="RandomCard">
+        {randomImg}
+        
+      </div>
 
       <div className="Tip del día">
         <h4>Tip del Día</h4>

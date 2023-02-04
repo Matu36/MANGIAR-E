@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchValuesIngredients } from "../../Redux/actions/index.js";
 import { ReactSearchAutocomplete } from 'react-search-autocomplete';
-import { getRecipes } from "../../Redux/actions/index.js";
+//import { getRecipes } from "../../Redux/actions/index.js";
 //import { input } from "react-dom";
 
 export default function SearchBar() {
@@ -32,8 +32,6 @@ export default function SearchBar() {
     console.log('Focused')
   }
 
-  if (!handleOnSearch) {
-    alert ("Ingresar nombre de la receta") }
   
 
   const formatResult = (item) => {
@@ -79,7 +77,7 @@ export default function SearchBar() {
         <h2> Buscar Recetas </h2>
         <div style={{ width: 400 }}>
         <ReactSearchAutocomplete
-            items= {mapRecipes}
+            items = {mapRecipes}
             onSearch={handleOnSearch}
             onHover={handleOnHover}
             onSelect={handleOnSelect}
