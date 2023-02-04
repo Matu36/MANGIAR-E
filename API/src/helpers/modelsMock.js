@@ -139,7 +139,7 @@ console.log('/////////////// Con include //////////////////', (await Users.findB
 //console.log((await Recipes.findByPk(5, {include: 'Recipe_diets'})).toJSON());
 }
 
-async function apiMock (apiRegs = 10){
+async function apiMock (apiRegs = 2){
   
   // https://api.spoonacular.com/recipes/complexSearch?apiKey=773ce458cdb14b6aa7558d74e5db3e57&addRecipeInformation=true&number=5
   // https://api.spoonacular.com/recipes/informationBulk?ids=782585,716426,715497&apiKey=773ce458cdb14b6aa7558d74e5db3e57
