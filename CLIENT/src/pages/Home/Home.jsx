@@ -15,15 +15,14 @@ const Home = ({ getRecipes, recipes }) => {
 
   const recipess =  useSelector((state) => state.recipes);
 
-  const mapImgRecipes = recipess.map((r) => {
-    return {
-      
-      name: r.title,
-      img: r.image}
-});
+  const mapArrayDeObetos = recipess.map((r) =>{
+    return {name:r.title,
+            img:r.image,
+            diets: r.diets}
+  })
 
   const randomImg = () => {
-    var myArray = mapImgRecipes;
+    var myArray = mapArrayDeObetos;
     var rand = Math.floor(Math.random() * myArray.lenght);
     var rValue = myArray[rand];
     return rValue;
@@ -60,9 +59,9 @@ const Home = ({ getRecipes, recipes }) => {
       <br />
       <br />
 
-      <div className="RandomCard">
-        {randomImg}
-        
+      <div className="Tip del día">
+        <h4>randomRECIPE</h4>
+        <p>{randomImg()}</p>
       </div>
 
       <div className="Tip del día">
