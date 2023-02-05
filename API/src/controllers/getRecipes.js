@@ -5,7 +5,9 @@ const {
 module.exports = async (req, res) => {
     try{
 
-      let Recip = await Recipes.findAll();
+      let Recip = await Recipes.findAll({
+        include: 'Recipe_diets', required: false,
+      });
       
       if(!Recip.length){
         return res.status(404).send('Recipes Not Found');
