@@ -1,21 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setSearchValuesIngredients } from "../../Redux/actions/index.js";
+import { setRecipeIdAutocomplete, setSearchValueName } from "../../Redux/actions/index.js";
 import { ReactSearchAutocomplete } from 'react-search-autocomplete';
-import { getRecipes } from "../../Redux/actions/index.js";
-//import { input } from "react-dom";
+import { filterByDiet, setOrderBy } from "../../Redux/actions/index.js";
+import Select from 'react-select';
+
 
 export default function SearchBar() {
-  //const [search, setSearch] = useState("");
   const dispatch = useDispatch();
   const recipes =  useSelector((state) => state.recipes);
+  const diets =  useSelector((state) => state.diets);
+  const orderBy = useSelector((state) => state.orderBy);
+  const recipeDetailIdAutocomplete = useSelector((state) => state.recipeIdAutocomplete);
+
+  console.log (recipeDetailIdAutocomplete)
 
   const mapRecipes = recipes.map((r) => {
-    return {name:r.title}
+    return {name: r.title,
+    id: r.id,
+    img: r.image,
+    diet: r.diets,
+    
+}
 });
 
-
-  
   const handleOnSearch = (string, results) => {
   console.log(string, results)
   }
@@ -25,6 +33,7 @@ export default function SearchBar() {
   }
 
   const handleOnSelect = (item) => {
+    dispatch (setRecipeIdAutocomplete(item.id))
     console.log(item)
   }
 
@@ -32,54 +41,47 @@ export default function SearchBar() {
     console.log('Focused')
   }
 
-  if (!handleOnSearch) {
-    alert ("Ingresar nombre de la receta") }
-  
-
   const formatResult = (item) => {
     return (
       <>
-        <span style={{ display: 'block', textAlign: 'left' }}>id: {item.id}</span>
-        <span style={{ display: 'block', textAlign: 'left' }}>name: {item.name}</span>
+        <span style={{ display: 'block', textAlign: 'left' }}>{item.name}</span>
       </>
     )
   }
 
-  //const handleOnChange = (e) => {
-    //e.preventDefault();
-    // dispatch( "" (e.target.value));
-   // setSearch(e.target.value);
-  //};
-
-  //const handleOnClick = (e) => {
-   // e.preventDefault();
-
-   /* if (!search) {
-      alert("Ingresar nombre de la receta");
-    } else {
-      dispatch(getRecipes(search));
-      setSearch("");
-    }
-  };
-*/
-
-  const ingredientsValues = useSelector(
-    (state) => state.searchValuesIngredients
-  );
-  console.log(ingredientsValues);
-  const handleSearchByIngredients = (event) => {
-    if (event.keyCode === 13)
-      dispatch(setSearchValuesIngredients(event.target.value));
+  const handleSearch = (event) => {
+    dispatch(setSearchValueName(event.target.value));
   };
 
-  return (
+  const handleFilterbyDiet = (event) => {
+    dispatch(filterByDiet(event.target.value));
+  };
+
+  const orderSelectByAlphabetical = [
+    {label: '', value: ''},
+    {label: 'A-Z', value: 'A-Z'},
+    {label: 'Z-A', value: 'Z-A'},
+  ]
+
+  const handleOrder = (e, { type }) => {
+    let cache = {...orderBy};
+    
+    if(orderBy.type !== type) cache.type = type;
+    
+    cache.order = e.value;
+    
+    dispatch(setOrderBy(cache))
+  };
+
+return (
     <nav className="searchNavBar">
       <div className="sBar">
+
       <header className="sBar-header">
         <h2> Buscar Recetas </h2>
         <div style={{ width: 400 }}>
         <ReactSearchAutocomplete
-            items= {mapRecipes}
+            items = {mapRecipes}
             onSearch={handleOnSearch}
             onHover={handleOnHover}
             onSelect={handleOnSelect}
@@ -91,28 +93,30 @@ export default function SearchBar() {
         </header>
     
         </div>
+        <Select className="selectOrder"
+        options={orderSelectByAlphabetical}
+        onChange={(e) => handleOrder(e, {type: 'title'})}
+      /><br></br>
+   <input className="searchbar" type="text" 
+   placeholder="Search by name" 
+    onChange={handleSearch}/>
+    <h2>Order By:</h2>
 
-      <h1>Filters</h1>
+<select onChange={handleFilterbyDiet}>
+  <option value=""></option>
 
-      <input
-        className="searchbaringredients"
-        type="text"
-        placeholder="Search by ingredients"
-        onKeyUp={handleSearchByIngredients}
-      />
-      {ingredientsValues
-        ? ingredientsValues.map((ingredient, index) => {
-            return (
-              <div key={index}>
-                {ingredient}
-                <button>x</button>
-              </div>
-            );
-          })
-        : null}
-      <br></br>
+  {diets && diets.map((diet, indexkey) => {
+    diet = diet[0].toUpperCase() + diet.slice(1);
 
-      <hr></hr>
-    </nav>
+    return (
+      <option key={indexkey} value={diet}>
+        {diet}
+      </option>
+    );
+  })}
+</select> <br></br>
+      
+      </nav>
+     
   );
 }

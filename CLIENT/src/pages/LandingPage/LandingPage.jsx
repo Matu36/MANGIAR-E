@@ -61,39 +61,29 @@ export default function LandingPage () {
 return (
 
 <div className= {style.container}>
-
-
-   <h1 className= {style.tittle}>MANGIAR-E</h1>
-
-
-    <div className= {style.slide}>
-    <Slide>
-         {slideImages.map((slideImage, index)=> (
-            <div key={index}>
-              <div style={{ ...divStyle, 'backgroundImage': `url(${slideImage.url})` }}>
-              </div>
-            </div>
-          ))} 
-    </Slide>
-   </div>
+<div className= {style.divTitle}>
+<h1 className= {style.tittle}>MANGIAR-E</h1>
+</div>
+<div className= {style.containerslydeYregistro}>
+   <div className= {style.iniciosesionmasbotones}>
+   <div className= {style.iniciosesion}>
 <h3>Inicio de Sesión</h3>
 <form onSubmit={(e) => handleSubmit(e)}>
 <label> Usuario </label>
 <input type={"text"} name = {"Usuario"} value = {input.Usuario} 
 onChange= {(e) => letHandleOnChange (e)}/> 
-
+<br />
 <label> Contraseña </label>
 <input type={"password"} name = {"Contraseña"} value = {input.Contraseña} 
 onChange= {(e) => letHandleOnChange (e)}/> 
-
-
-<br/>
-<br/>
-
+<br />
 <input type={"submit"} value = {"Ingresar"}/>
+<br/>
+<br/>
 
 </form>
-
+</div>
+<div className= {style.button}>
 <Link to = {"/formUser"}>
 <button className= {style.register}>Registrarse aquí</button>
 </Link>
@@ -102,9 +92,27 @@ onChange= {(e) => letHandleOnChange (e)}/>
 <Link to = {"/home"}>
 <button className= {style.register1}>Ingresar como Invitado</button>
 </Link>
-<br />
 
+<br />
+</div>
+</div>
+ <div className= {style.slide}>
+ <Slide>
+         {slideImages.map((slideImage, index)=> (
+           <div key={index}>
+              <div style={{ ...divStyle, 'backgroundImage': `url(${slideImage.url})` }}>
+              </div>
+            </div>
+          ))} 
+    </Slide>
+   </div>
+          </div>
+<div className= {style.colaborators}>
+
+<h4>Colaboradores</h4>
+</div>
 
 </div>
+
 )
 }

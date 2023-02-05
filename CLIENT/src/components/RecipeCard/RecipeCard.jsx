@@ -1,11 +1,11 @@
 import React from "react";
 import s from "./RecipeCard.module.css";
 
-function RecipeCard({ title, img, diets }) {
+function RecipeCard({ id, title, image, diets }) {
   return (
-    <div className={s.card}>
+    <div className={s.card} id={id}>
       <div className={s.imgDiv}>
-        <img src={img} alt={title} />
+        <img src={image} alt={title} />
       </div>
 
       <div className={s.dataDiv}>

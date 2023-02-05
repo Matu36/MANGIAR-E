@@ -1,46 +1,60 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import s from "./RecipeDetail.module.css";
+import React , { useEffect } from "react";
+import { useDispatch, useSelector} from "react-redux";
+import {useParams, useNavigate } from "react-router-dom";
+import * as actions from "../../Redux/actions/index";
+//import style from "../RecipeDetail/RecipeDetail.module.css";
 
-const img =
-  "https://3.bp.blogspot.com/-RQ01Qk_X99g/UcBTEr33WNI/AAAAAAAB0U4/itGN1VVChNM/s1600/fotografias-de-comida-china-bufette-chinesse-food-arroz-comida-asiatica-2.jpg";
+const RecipeDetail = () => {
+  let { idrecipe } = useParams();
+  let history = useNavigate();
+  let dispatch = useDispatch();
+  let recipe = useSelector(state => state.recipeDetail);
 
-function RecipeDetail() {
-  const { id } = useParams();
+  if(recipe.msg) alert(recipe.msg)
+  const {name, image, summary, healthScore, stepByStep, diets} = recipe;
+  
+  const handleClick = () => {
+    history.push('/home');
+  }
+  
+  useEffect( () => {
+    dispatch(actions.getRecipeDetail(idrecipe));
+
+  },[idrecipe,dispatch]);
 
   return (
-    <div className={s.bigContainer}>
-      <div className={s.container}>
-        <div className={s.card}>
-          <img src={img} className={s.img} alt="recipe" />
-          <div className={s.data}>
-            <h2>Nombre Receta con ID: {id}</h2>
-            <p>
-              <span>Summary: </span> Lorem ipsum dolor sit, amet consectetur
-              adipisicing elit. Architecto, nesciunt? Laudantium quam magni
-              dolorem optio in atque ipsa soluta provident repudiandae
-              perspiciatis eveniet neque aspernatur beatae totam, omnis iure
-              sint.
-            </p>
-            <p>
-              <span>Healt Score: </span> 8/10
-            </p>
-            <p>
-              <span>Type of diet: </span> Vegan - Keto
-            </p>
-            <h4>Steps:</h4>
-            <ul>
-              <li>Step 1</li>
-              <li>Step 2</li>
-              <li>Step 3</li>
-              <li>Step 4</li>
-              <li>Step 5</li>
-            </ul>
-          </div>
-        </div>
+    <div className="container-main-detail">
+      <div className="container-button-home">
+
+          <button type="button" onClick={handleClick}>
+              Go home
+          </button>
+
       </div>
+      <h3>{name}</h3>
+
+      <div className="container-img-summary">
+
+      <div className="recipe-detail-img"><img src={image} alt={name}/></div>
+      <div className="recipe-detail-summary"><p>{summary}</p></div>
+
+      </div>
+      <h3 className="recipeDetail">healthScore: {healthScore}</h3>
+      <ul className="recipeDetail">
+      {stepByStep && stepByStep.map(({ numberStep, description}) => {
+        return (<li>{numberStep} : {description}</li>)
+      
+      })}
+      </ul>
+      <ul className="recipeDetail">
+      {diets && diets.map(diet => {
+        return (<li>{diet}</li>)
+      
+      })} 
+      </ul>
     </div>
   );
-}
+};
+
 
 export default RecipeDetail;
