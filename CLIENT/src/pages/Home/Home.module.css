@@ -1,7 +1,51 @@
-.cardsContainer {
-    padding: 2rem;
-    box-sizing: border-box;
+.mainContainDiv {
     background-color: antiquewhite;
     display: flex;
+}
+
+.filtersContainerDiv {
+    width: 20%;
+}
+
+.mainRecipesDiv {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cardsContainer {
+    width: 100%;
+    padding: 2rem;
+    box-sizing: border-box;
+    display: flex;
     justify-content: space-evenly;
+}
+
+.healtyTipDiv {
+    background-color: rgb(255, 255, 255);
+    width: 70%;
+    display: flex;
+    align-items: center;
+}
+
+.healtyTipIconDiv {
+    width: 10%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.verticalDiv {
+    background-color: gray;
+    border-radius: 50%;
+    width: 1px;
+    height: 70px;
+}
+
+.healtyTipMainContain {
+    width: 89%;
+    padding: 20px;
+    box-sizing: border-box;
 }
