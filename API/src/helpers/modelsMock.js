@@ -65,7 +65,7 @@ async function locMock (){
     
   ///////////////// Ingredient Units /////////////////////////////
 
-  await Ingredient_units.bulkCreate(
+  await Ingredient_units.bulkCreate([
     {ingredientId: 1, unit: 'pounds'},
     {ingredientId: 2, unit: 'pounds'},
     {ingredientId: 3, unit: 'units'},
@@ -79,7 +79,7 @@ async function locMock (){
     {ingredientId: 10, unit: 'units'},
     {ingredientId: 11, unit: 'pounds'},
     {ingredientId: 12, unit: 'pounds'},
-  )
+  ])
 
   ////////////////// Order_details //////////////////////
 
