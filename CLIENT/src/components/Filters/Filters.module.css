@@ -1,0 +1,6 @@
+.container {
+    background-color: burlywood;
+    padding: 1rem;
+    box-sizing: border-box;
+    height: 30rem;
+}
