@@ -5,7 +5,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Badge from "@material-ui/core/Badge";
 import Menu from "@material-ui/core/Menu";
-//import AddShoppingCart from "@material-ui/icons/AddShoppingCart";
+import AddShoppingCart from "@material-ui/icons/AddShoppingCart";
 const useStyles = makeStyles(() => ({
   grow: {
     flexGrow: 1,
@@ -52,13 +52,11 @@ export default function Navbar({ getTotalItems, setCartOpen }) {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-          <b>TU TIENDA ONLINE</b> 
-          <div className={classes.grow} />
-          <div onClick={() => setCartOpen(true)}
-          >
+          <div className={classes.grow}/>
+          <div onClick={() => setCartOpen(true)}>
             <IconButton aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={getTotalItems} color="secondary">
-                
+                <AddShoppingCart />
               </Badge>
             </IconButton>
           </div>
@@ -69,3 +67,5 @@ export default function Navbar({ getTotalItems, setCartOpen }) {
     </div>
   );
 }
+  
+  

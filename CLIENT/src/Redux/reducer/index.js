@@ -1,51 +1,63 @@
-import {
-  GET_RECIPES,
-  GET_RECIPE_DETAIL,
-  FILTER_BY_DIET,
-  SET_SEARCH_VALUES_INGREDIENTS,
-} from "../actions/index.js";
+import {GET_RECIPES, 
+  GET_RECIPE_DETAIL, 
+  FILTER_BY_DIET, 
+  SET_ORDER_BY, 
+  SET_SEARCH_VALUE_NAME,
+ SET_RECIPEID_AUTOCOMPLETE } from '../actions/index.js'
+
 
 const initialState = {
-  recipes: [],
+  recipes: [], 
   recipeDetail: {},
-  diets: [],
+  recipeIdAutocomplete: null,
+  diets: ["All Diets",
+  "gluten free",
+  "dairy free",
+  "lacto ovo vegetarian",
+  "vegan",
+  "vegetarian",
+  "paleolithic",
+  "primal",
+  "whole 30",
+  "pescatarian",
+  "ketogenic",
+  "fodmap friendly"], 
 
-  filterByDiet: "All Diets",
+  filterByDiet: "",
 
   orderBy: {
     order: "",
     type: undefined,
   },
 
-  searchValuesIngredients: [],
+  searchValueName: ""
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_RECIPES:
-      return {
+      return { 
         ...state,
-        recipes: action.payload,
-      };
+        recipes: action.payload
+    }
     case GET_RECIPE_DETAIL:
       return {
         ...state,
-        recipeDetail: action.payload,
-      };
+        recipeDetail: action.payload
+    } 
+    
     case FILTER_BY_DIET:
       return { ...state, filterByDiet: action.payload };
 
-    case SET_SEARCH_VALUES_INGREDIENTS:
-      return {
-        ...state,
-        searchValuesIngredients: [
-          ...initialState.searchValuesIngredients,
-          action.payload,
-        ],
+    case SET_ORDER_BY:
+      return { ...state, orderBy: action.payload };
+      
+      case SET_RECIPEID_AUTOCOMPLETE:
+      return { ...state, recipeIdAutocomplete: action.payload };
 
-      };
-    default:
-      return { ...state };
+    case SET_SEARCH_VALUE_NAME:
+      return { ...state, searchValue: action.payload };
+    default: return {...state}
   }
 };
 
