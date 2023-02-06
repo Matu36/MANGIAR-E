@@ -29,6 +29,7 @@ export default function SearchBar() {
 
   const handleOnSelect = (item) => {
     dispatch(setRecipeIdAutocomplete(item.id));
+    dispatch(filterByDiet(""));
   };
 
   const handleOnFocus = () => {
@@ -57,13 +58,10 @@ export default function SearchBar() {
     { label: "Z-A", value: "Z-A" },
   ];
 
-  const optionsDiets = [{ label: "Select Diet", value: " " }].concat(
-    diets.map((diet) => {
-      diet = diet[0].toUpperCase() + diet.slice(1);
-
-      return { label: diet, value: diet };
-    })
-  );
+  const optionsDiets = diets.map((diet) => {
+    diet = diet[0].toUpperCase() + diet.slice(1);
+    return { label: diet, value: diet };
+  });
 
   const handleOrder = (e, { type }) => {
     let cache = { ...orderBy };
@@ -76,47 +74,19 @@ export default function SearchBar() {
   };
 
   return (
-    <nav className={s.navBarMain}>
-      <div className={s.divContainerMain}>
-        <div className={s.divSearchBar}>
-          <div className={s.divReactSearchAutocomplete}>
-            <ReactSearchAutocomplete
-              items={mapRecipes}
-              onSearch={handleOnSearch}
-              onHover={handleOnHover}
-              onSelect={handleOnSelect}
-              onFocus={handleOnFocus}
-              autoFocus
-              formatResult={formatResult}
-              placeholder="Buscar Recetas"
-            />
-          </div>
-          <div className={s.divSelectByDiets}>
-            <Select
-              className={s.SelectByDiets}
-              options={optionsDiets}
-              onChange={(e) => handleFilterbyDiet(e)}
-              placeholder="Order By Diets"
-            />
-          </div>
-          <div className={s.divSelectByAlphabetical}>
-            <Select
-              className={s.SelectByAlphabetical}
-              options={orderSelectByAlphabetical}
-              onChange={(e) => handleOrder(e, { type: "title" })}
-              placeholder="Order By Alphabetical"
-            />
-          </div>
-          <div className={s.divInputName}>
-            <input
-              className={s.inputName}
-              type="text"
-              placeholder="Search by name"
-              onChange={handleSearch}
-            />
-          </div>
-        </div>
+    <div className={s.container}>
+      <div className={s.componentDiv}>
+        <ReactSearchAutocomplete
+          items={mapRecipes}
+          onSearch={handleOnSearch}
+          onHover={handleOnHover}
+          onSelect={handleOnSelect}
+          onFocus={handleOnFocus}
+          autoFocus
+          formatResult={formatResult}
+          placeholder="Buscar Recetas"
+        />
       </div>
-    </nav>
+    </div>
   );
 }

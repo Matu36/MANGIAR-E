@@ -2,21 +2,27 @@ import React from "react";
 import s from "./Filters.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
-import { filterByDiet, setOrderBy, setSearchValueName } from "../../Redux/actions/index.js";
-
-
+import {
+  filterByDiet,
+  setOrderBy,
+} from "../../Redux/actions/index.js";
 
 function Filters() {
   const dispatch = useDispatch();
+  const recipes = useSelector((state) => state.recipes);
   const orderBy = useSelector((state) => state.orderBy);
   const diets = useSelector((state) => state.diets);
 
-
   const orderSelectByAlphabetical = [
-    { label: "", value: "" },
+    { label: "Select Order Alphabetical", value: "" },
     { label: "A-Z", value: "A-Z" },
     { label: "Z-A", value: "Z-A" },
   ];
+
+  const optionsDiets = diets.map((diet) => {
+    diet = diet[0].toUpperCase() + diet.slice(1);
+    return { label: diet, value: diet };
+  });
 
   const handleOrder = (e, { type }) => {
     let cache = { ...orderBy };
@@ -28,43 +34,24 @@ function Filters() {
     dispatch(setOrderBy(cache));
   };
 
-  const handleSearch = (event) => {
-    dispatch(setSearchValueName(event.target.value));
-  };
-
   const handleFilterbyDiet = (event) => {
-    dispatch(filterByDiet(event.target.value));
+    dispatch(filterByDiet(event.value));
   };
 
   return (
     <div className={s.container}>
       <Select
+        className={s.SelectByDiets}
+        options={optionsDiets}
+        onChange={(e) => handleFilterbyDiet(e)}
+        placeholder="Order By Diets"
+      />
+      <Select
         className="selectOrder"
         options={orderSelectByAlphabetical}
         onChange={(e) => handleOrder(e, { type: "title" })}
+        placeholder="Order By Alphabetical"
       />
-      <br></br>
-      <input
-        className="searchbar"
-        type="text"
-        placeholder="Search by name"
-        onChange={handleSearch}
-      />
-      <h2>Order By:</h2>
-      <select onChange={handleFilterbyDiet}>
-        <option value=""></option>
-
-        {diets &&
-          diets.map((diet, indexkey) => {
-            diet = diet[0].toUpperCase() + diet.slice(1);
-
-            return (
-              <option key={indexkey} value={diet}>
-                {diet}
-              </option>
-            );
-          })}
-      </select>
     </div>
   );
 }
