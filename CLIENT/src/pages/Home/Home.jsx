@@ -7,8 +7,6 @@ import { healthyTips } from "../../components/healthyTips/healthyTips";
 import { getRecipes } from "../../Redux/actions";
 import Paginations from "../../components/Paginations/Paginations";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
-import Filters from "../../components/Filters/Filters";
-import RecipeCardHorizontal from "../../components/RecipeCardHorizontal/RecipeCardHorizontal";
 
 export default function Home() {
   let dispatch = useDispatch(); // hooks para conectar con la actions
@@ -22,7 +20,7 @@ export default function Home() {
     dispatch(getRecipes());
   }, []);
 
-  const [recipeByIdAutocomplete, setrecipeByIdAutocomplete] = useState({});
+  const [recipeByIdAutocomplete, setrecipeByIdAutocomplete] = useState();
 
   const filterById = () => {
     const cache = [...allRecipes];
@@ -55,7 +53,6 @@ export default function Home() {
   }, [filterbyDiet, allRecipes]);
 
   //                 Filtro por Name                   //----------------
-
   const [recipesByName, setRecipesByName] = useState(recipesByDiet);
 
   const nameValue = useSelector((state) => state.searchValueName);
@@ -155,9 +152,17 @@ export default function Home() {
         <br />
         <div className={s.divRandomTip}>{randomTip()}</div>
       </div>
+      {recipeByIdAutocomplete && (
+        <RecipeCard
+          id={recipeByIdAutocomplete.id}
+          title={recipeByIdAutocomplete.title}
+          image={recipeByIdAutocomplete.image}
+          diets={recipeByIdAutocomplete.diets}
+        />
+      )}
 
       <div className={s.containerRecipeCards}>
-        {(orderBy.order !== "" || filterbyDiet !== "" || nameValue !== "") &&
+        {(orderBy.order !== "" || filterbyDiet !== "") &&
           (totalRecipes?.map((recipe) => (
             <div key={recipe.id} className="divCard">
               <RecipeCard
