@@ -1,0 +1,12 @@
+.container {
+    width: 100%;
+    height: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.componentDiv {
+    width: 400px;
+}
+
