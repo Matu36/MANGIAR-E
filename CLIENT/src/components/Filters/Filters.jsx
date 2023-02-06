@@ -52,6 +52,7 @@ function Filters() {
         onChange={(e) => handleOrder(e, { type: "title" })}
         placeholder="Order By Alphabetical"
       />
+      
     </div>
   );
 }
