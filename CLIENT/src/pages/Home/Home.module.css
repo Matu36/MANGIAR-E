@@ -1,78 +1,66 @@
-.divHealthyTip {
-    border: solid 1px rgb(145, 144, 144, 0.5);
-    border-radius: 10px;
-    background-color:bisque;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    width: 75%;
-    margin-left: 10%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.containerMain {
+  background-color: #fbab7e;
+  background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
 }
 
-.divRandomTip {
-    width: 85%;
-    text-align: center;
-}
-.containerRecipeCards {
-    display: flex;
-    justify-content: space-around;
-}
 .divPagination {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .mainContainDiv {
-    background-color: antiquewhite;
-    display: flex;
+  display: flex;
+  position: relative;
 }
 
 .filtersContainerDiv {
-    width: 20%;
+  width: 20%;
+  height: 30rem;
+  position: sticky;
+  top: 100px;
 }
 
 .mainRecipesDiv {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .cardsContainer {
-    width: 100%;
-    padding: 2rem;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-evenly;
+  width: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .healtyTipDiv {
-    background-color: rgb(255, 255, 255);
-    width: 70%;
-    display: flex;
-    align-items: center;
+  background-color: rgb(255, 255, 255);
+  width: 70%;
+  display: flex;
+  align-items: center;
 }
 
 .healtyTipIconDiv {
-    width: 10%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 10%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .verticalDiv {
-    background-color: gray;
-    border-radius: 50%;
-    width: 1px;
-    height: 70px;
+  background-color: gray;
+  border-radius: 50%;
+  width: 1px;
+  height: 70px;
 }
 
 .healtyTipMainContain {
-    width: 89%;
-    padding: 20px;
-    box-sizing: border-box;
+  width: 89%;
+  padding: 20px;
+  box-sizing: border-box;
 }

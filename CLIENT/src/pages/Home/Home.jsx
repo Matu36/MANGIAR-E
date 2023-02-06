@@ -7,6 +7,8 @@ import { healthyTips } from "../../components/healthyTips/healthyTips";
 import { getRecipes } from "../../Redux/actions";
 import Paginations from "../../components/Paginations/Paginations";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
+import RecipeCardHorizontal from "../../components/RecipeCardHorizontal/RecipeCardHorizontal";
+import Filters from "../../components/Filters/Filters";
 
 export default function Home() {
   let dispatch = useDispatch(); // hooks para conectar con la actions
@@ -147,48 +149,75 @@ export default function Home() {
     <div className={s.containerMain}>
       <NavBar />
       <SearchBar />
-      <div className={s.divHealthyTip}>
-        <h3>Healthy Tip</h3>
-        <br />
-        <div className={s.divRandomTip}>{randomTip()}</div>
-      </div>
-      {recipeByIdAutocomplete && (
-        <RecipeCard
-          id={recipeByIdAutocomplete.id}
-          title={recipeByIdAutocomplete.title}
-          image={recipeByIdAutocomplete.image}
-          diets={recipeByIdAutocomplete.diets}
-        />
-      )}
 
-      <div className={s.containerRecipeCards}>
-        {(orderBy.order !== "" || filterbyDiet !== "") &&
-          (totalRecipes?.map((recipe) => (
-            <div key={recipe.id} className="divCard">
-              <RecipeCard
+      <div className={s.mainContainDiv}>
+        <div className={s.filtersContainerDiv}>
+          <Filters />
+        </div>
+        <div className={s.mainRecipesDiv}>
+          {recipeByIdAutocomplete && (
+            <RecipeCard
+              id={recipeByIdAutocomplete.id}
+              title={recipeByIdAutocomplete.title}
+              image={recipeByIdAutocomplete.image}
+              diets={recipeByIdAutocomplete.diets}
+            />
+          )}
+
+          <div className={s.cardsContainer}>
+            {(orderBy.order !== "" || filterbyDiet !== "") &&
+              (totalRecipes
+                ?.slice(0, 3)
+                .map((recipe) => (
+                  <RecipeCard
+                    key={recipe.id}
+                    id={recipe.id}
+                    title={recipe.title}
+                    image={recipe.image}
+                    diets={recipe.diets}
+                  />
+                )) || (
+                <div className="nFound">
+                  <img className="not found" alt="no Results" />
+                  <h2>No se encontraron resultados</h2>
+                </div>
+              ))}
+          </div>
+
+          <div className={s.healtyTipDiv}>
+            <div className={s.healtyTipIconDiv}>💡</div>
+            <div className={s.verticalDiv}></div>
+            <div className={s.healtyTipMainContain}>
+              <p>Healthy Tip</p>
+              <p>{randomTip()}</p>
+            </div>
+          </div>
+
+          <div className={s.moreRecipesDiv}>
+            {totalRecipes?.slice(3).map((recipe) => (
+              <RecipeCardHorizontal
+                key={recipe.id}
                 id={recipe.id}
                 title={recipe.title}
                 image={recipe.image}
                 diets={recipe.diets}
               />
-            </div>
-          )) || (
-            <div className="nFound">
-              <img className="not found" alt="no Results" />
-              <h2>No se encontraron resultados</h2>
-            </div>
-          ))}
-      </div>
+            ))}
+          </div>
 
-      <hr />
-      <div className={s.divPagination}>
-        {(orderBy.order !== "" || filterbyDiet !== "" || nameValue !== "") && (
-          <Paginations
-            currentPage={currentPage}
-            numberOfPage={numberOfPage}
-            handlePageNumber={handlePageNumber}
-          />
-        )}
+          <hr />
+          <div className={s.divPagination}>
+            {(orderBy.order !== "" ||
+              filterbyDiet !== "" ||
+              nameValue !== "") && (
+              <Paginations
+                currentPage={currentPage}
+                numberOfPage={numberOfPage}
+                handlePageNumber={handlePageNumber}
+              />
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

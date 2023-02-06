@@ -60,7 +60,6 @@ export default function SearchBar() {
 
   const optionsDiets = diets.map((diet) => {
     diet = diet[0].toUpperCase() + diet.slice(1);
-
     return { label: diet, value: diet };
   });
 
@@ -75,40 +74,19 @@ export default function SearchBar() {
   };
 
   return (
-    <nav className={s.navBarMain}>
-      <div className={s.divContainerMain}>
-        <div className={s.divSearchBar}>
-          <div className={s.divReactSearchAutocomplete}>
-            <ReactSearchAutocomplete
-              items={mapRecipes}
-              onSearch={handleOnSearch}
-              onHover={handleOnHover}
-              onSelect={handleOnSelect}
-              onFocus={handleOnFocus}
-              autoFocus
-              formatResult={formatResult}
-              placeholder="Buscar Recetas"
-            />
-          </div>
-          <div className={s.divSelectByDiets}>
-            <Select
-              className={s.SelectByDiets}
-              options={optionsDiets}
-              onChange={(e) => handleFilterbyDiet(e)}
-              placeholder="Order By Diets"
-            />
-          </div>
-          <div className={s.divSelectByAlphabetical}>
-            <Select
-              className={s.SelectByAlphabetical}
-              options={orderSelectByAlphabetical}
-              onChange={(e) => handleOrder(e, { type: "title" })}
-              placeholder="Order By Alphabetical"
-            />
-          </div>
-          
-        </div>
+    <div className={s.container}>
+      <div className={s.componentDiv}>
+        <ReactSearchAutocomplete
+          items={mapRecipes}
+          onSearch={handleOnSearch}
+          onHover={handleOnHover}
+          onSelect={handleOnSelect}
+          onFocus={handleOnFocus}
+          autoFocus
+          formatResult={formatResult}
+          placeholder="Buscar Recetas"
+        />
       </div>
-    </nav>
+    </div>
   );
 }
