@@ -29,6 +29,7 @@ export default function SearchBar() {
 
   const handleOnSelect = (item) => {
     dispatch(setRecipeIdAutocomplete(item.id));
+    dispatch(filterByDiet(""));
   };
 
   const handleOnFocus = () => {
@@ -57,13 +58,11 @@ export default function SearchBar() {
     { label: "Z-A", value: "Z-A" },
   ];
 
-  const optionsDiets = [{ label: "Select Diet", value: " " }].concat(
-    diets.map((diet) => {
-      diet = diet[0].toUpperCase() + diet.slice(1);
+  const optionsDiets = diets.map((diet) => {
+    diet = diet[0].toUpperCase() + diet.slice(1);
 
-      return { label: diet, value: diet };
-    })
-  );
+    return { label: diet, value: diet };
+  });
 
   const handleOrder = (e, { type }) => {
     let cache = { ...orderBy };
@@ -107,14 +106,7 @@ export default function SearchBar() {
               placeholder="Order By Alphabetical"
             />
           </div>
-          <div className={s.divInputName}>
-            <input
-              className={s.inputName}
-              type="text"
-              placeholder="Search by name"
-              onChange={handleSearch}
-            />
-          </div>
+          
         </div>
       </div>
     </nav>
