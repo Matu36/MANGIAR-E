@@ -13,11 +13,11 @@ import RecipeCardHorizontal from "../../components/RecipeCardHorizontal/RecipeCa
 export default function Home() {
   let dispatch = useDispatch(); // hooks para conectar con la actions
   const allRecipes = useSelector((state) => state.recipes);
-  // componentDidMount para hacer la solicitud a la api/db al iniciar el componente Home una sola vez.
   const recipeDetailIdAutocomplete = useSelector(
     (state) => state.recipeIdAutocomplete
   );
 
+  // componentDidMount para hacer la solicitud a la api/db al iniciar el componente Home una sola vez.
   useEffect(() => {
     dispatch(getRecipes());
   }, []);
@@ -30,7 +30,6 @@ export default function Home() {
       (recipe) => recipe.id === recipeDetailIdAutocomplete
     );
     setrecipeByIdAutocomplete(recipe);
-    console.log(recipe);
   };
 
   useEffect(() => {
@@ -41,19 +40,19 @@ export default function Home() {
 
   const [recipesByDiet, setRecipesForDiet] = useState(allRecipes);
 
-  const filter = useSelector((state) => state.filterByDiet);
+  const filterbyDiet = useSelector((state) => state.filterByDiet);
 
   useEffect(() => {
-    filter === "All Diets"
+    filterbyDiet === "All Diets"
       ? setRecipesForDiet(allRecipes)
       : setRecipesForDiet(
           allRecipes.filter((recipe) =>
             recipe.diets.some(
-              (diet) => diet.toLowerCase() === filter.toLowerCase()
+              (diet) => diet.toLowerCase() === filterbyDiet.toLowerCase()
             )
           )
         );
-  }, [filter, allRecipes]);
+  }, [filterbyDiet, allRecipes]);
 
   //                 Filtro por Name                   //----------------
 
@@ -148,17 +147,17 @@ export default function Home() {
   };
 
   return (
-    <div className>
+    <div className={s.containerMain}>
       <NavBar />
       <SearchBar />
+      <div className={s.divHealthyTip}>
+        <h3>Healthy Tip</h3>
+        <br />
+        <div className={s.divRandomTip}>{randomTip()}</div>
+      </div>
 
-      <div className={s.mainContainDiv}>
-        <div className={s.filtersContainerDiv}>
-          <Filters />
-        </div>
-        <div className={s.mainRecipesDiv}>
-          {/* <div className="container-Cards">
-        {(orderBy.order !== "" || filter !== "" || nameValue !== "") &&
+      <div className={s.containerRecipeCards}>
+        {(orderBy.order !== "" || filterbyDiet !== "" || nameValue !== "") &&
           (totalRecipes?.map((recipe) => (
             <div key={recipe.id} className="divCard">
               <RecipeCard
@@ -174,56 +173,17 @@ export default function Home() {
               <h2>No se encontraron resultados</h2>
             </div>
           ))}
-      </div> */}
+      </div>
 
-          <div className={s.cardsContainer}>
-            <RecipeCard
-              id={1}
-              title={"Receta 1"}
-              image={
-                "https://i.pinimg.com/originals/0d/d5/ab/0dd5abc247ee3e519704df399ab3ddcf.jpg"
-              }
-              diets={["Vegan"]}
-            />
-            <RecipeCard
-              id={2}
-              title={"Receta 2"}
-              image={
-                "https://i.pinimg.com/originals/0d/d5/ab/0dd5abc247ee3e519704df399ab3ddcf.jpg"
-              }
-              diets={["Vegan"]}
-            />
-            <RecipeCard
-              id={2}
-              title={"Receta 3"}
-              image={
-                "https://i.pinimg.com/originals/0d/d5/ab/0dd5abc247ee3e519704df399ab3ddcf.jpg"
-              }
-              diets={["Vegan", "Gluten free"]}
-            />
-          </div>
-
-          <div className={s.healtyTipDiv}>
-            <div className={s.healtyTipIconDiv}>💡</div>
-            <div className={s.verticalDiv}></div>
-            <div className={s.healtyTipMainContain}>
-              <p>Healthy Tip</p>
-              <p>{randomTip()}</p>
-            </div>
-          </div>
-
-          <div className={s.othersRecipesContainer}>
-            <RecipeCardHorizontal />
-            <RecipeCardHorizontal />
-            <RecipeCardHorizontal />
-          </div>
-
+      <hr />
+      <div className={s.divPagination}>
+        {(orderBy.order !== "" || filterbyDiet !== "" || nameValue !== "") && (
           <Paginations
             currentPage={currentPage}
             numberOfPage={numberOfPage}
             handlePageNumber={handlePageNumber}
           />
-        </div>
+        )}
       </div>
     </div>
   );
