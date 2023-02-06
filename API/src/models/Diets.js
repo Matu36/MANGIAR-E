@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "Ingredients",
+    "Diets",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -11,18 +11,9 @@ module.exports = (sequelize) => {
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notEmpty: true,
-        },
-      },
-      price: {
-        type: DataTypes.FLOAT,
-        allowNull: false,
+        nullable: false,
       },
     },
-    {
-      timestamps: false,
-    }
+    { timestamps: false }
   );
 };

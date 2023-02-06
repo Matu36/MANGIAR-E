@@ -7,6 +7,8 @@ import { healthyTips } from "../../components/healthyTips/healthyTips";
 import { getRecipes } from "../../Redux/actions";
 import Paginations from "../../components/Paginations/Paginations";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
+import Filters from "../../components/Filters/Filters";
+import RecipeCardHorizontal from "../../components/RecipeCardHorizontal/RecipeCardHorizontal";
 
 export default function Home() {
   let dispatch = useDispatch(); // hooks para conectar con la actions
