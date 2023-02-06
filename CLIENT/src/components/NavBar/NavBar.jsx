@@ -15,6 +15,7 @@ function NavBar() {
     <button className= {s.btn1}>CREATE YOUR OWN RECIPE</button>
    </Link>
    <Link to = {"/myRecipes"}>
+
     <button className= {s.btn1}>My recipes</button>
    </Link>
    <Link to = {"/aboutUs"}>

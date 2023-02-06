@@ -1,130 +1,126 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import s from "./Home.module.css";
+// import s from "./Home.module.css";
 import NavBar from "../../components/NavBar/NavBar";
 import SearchBar from "../../components/SearchBar/searchBar";
 import { healthyTips } from "../../components/healthyTips/healthyTips";
-import { getRecipes } from "../../Redux/actions";
+import { getRecipes} from "../../Redux/actions";
 import Paginations from "../../components/Paginations/Paginations";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
-import RecipeCardHorizontal from "../../components/RecipeCardHorizontal/RecipeCardHorizontal";
-import Filters from "../../components/Filters/Filters";
 
-export default function Home() {
-  let dispatch = useDispatch(); // hooks para conectar con la actions
-  const allRecipes = useSelector((state) => state.recipes);
-  const recipeDetailIdAutocomplete = useSelector(
-    (state) => state.recipeIdAutocomplete
-  );
+export default function Home () {
+    let dispatch = useDispatch(); // hooks para conectar con la actions
+    const allRecipes =  useSelector((state) => state.recipes);
+    // componentDidMount para hacer la solicitud a la api/db al iniciar el componente Home una sola vez.
+    const recipeDetailIdAutocomplete = useSelector((state) => state.recipeIdAutocomplete);
 
-  // componentDidMount para hacer la solicitud a la api/db al iniciar el componente Home una sola vez.
-  useEffect(() => {
-    dispatch(getRecipes());
-  }, []);
+     useEffect(() =>{                    
+     dispatch(getRecipes());
+    },[])
+    
+    const [recipeByIdAutocomplete, setrecipeByIdAutocomplete] = useState ({});
+    
+    const filterById = () => {
+      const cache = [...allRecipes];
+      const recipe = cache.find (recipe => recipe.id === recipeDetailIdAutocomplete);
+      setrecipeByIdAutocomplete(recipe)
+      console.log(recipe)
+    };
 
-  const [recipeByIdAutocomplete, setrecipeByIdAutocomplete] = useState();
+    useEffect(() => {
+      filterById()
 
-  const filterById = () => {
-    const cache = [...allRecipes];
-    const recipe = cache.find(
-      (recipe) => recipe.id === recipeDetailIdAutocomplete
-    );
-    setrecipeByIdAutocomplete(recipe);
-  };
+    }, [recipeDetailIdAutocomplete, allRecipes])
 
-  useEffect(() => {
-    filterById();
-  }, [recipeDetailIdAutocomplete, allRecipes]);
 
-  //                Filtro por DIET                  //---------------
-  const [recipesByDiet, setRecipesForDiet] = useState(allRecipes);
+    //                Filtro por DIET                  //---------------
 
-  const filterbyDiet = useSelector((state) => state.filterByDiet);
+    const [recipesByDiet, setRecipesForDiet] = useState(allRecipes);
 
-  useEffect(() => {
-    filterbyDiet === "All Diets"
-      ? setRecipesForDiet(allRecipes)
-      : setRecipesForDiet(
-          allRecipes.filter((recipe) =>
-            recipe.diets.some(
-              (diet) => diet.toLowerCase() === filterbyDiet.toLowerCase()
-            )
-          )
-        );
-  }, [filterbyDiet, allRecipes]);
+    const filter = useSelector((state) => state.filterByDiet);
 
-  //                 Filtro por Name                   //----------------
+    useEffect(() => {
+    
+        filter === "All Diets" 
+        ? setRecipesForDiet(allRecipes)
+        : setRecipesForDiet(allRecipes.filter(recipe => recipe.diets.some
+          (diet => diet.toLowerCase() === filter.toLowerCase())))
+        
+      }, [filter, allRecipes]);
 
-  const [recipesByName, setRecipesByName] = useState(recipesByDiet);
+    //                 Filtro por Name                   //----------------
 
-  const nameValue = useSelector((state) => state.searchValueName);
 
-  const filterByName = () => {
-    let arrayCache = [...recipesByDiet];
+    const [recipesByName, setRecipesByName] = useState(recipesByDiet)
 
-    arrayCache = arrayCache.filter((recipe) =>
-      recipe.title.toLowerCase().includes(nameValue.toLowerCase())
-    );
+    const nameValue = useSelector(state => state.searchValueName)
 
-    setRecipesByName(arrayCache);
-  };
+    const filterByName = () => {
+        let arrayCache = [...recipesByDiet];
+        
+        
+        arrayCache = arrayCache.filter(recipe => 
+          recipe.title.toLowerCase().includes(nameValue.toLowerCase()))
 
-  useEffect(() => {
-    filterByName();
-  }, [nameValue, recipesByDiet]);
+        setRecipesByName(arrayCache);
+    }
 
-  //                 Filtro por Orden de Healthscore      //----------------------------
+    useEffect(() => {
+      filterByName()
+    }, [nameValue, recipesByDiet])
 
+
+    //                 Filtro por Orden de Healthscore      //----------------------------
+
+    
   const orderBy = useSelector((state) => state.orderBy);
 
   const orderByProp = () => {
-    const { order, type } = orderBy;
+    
+    const { order , type } = orderBy;
 
-    let cache = [...recipesByName];
-
-    if (order === "") return setRecipesByName(recipesByName);
+    let cache = [ ...recipesByName ];
+    
+    if(order === '') return setRecipesByName(recipesByName);
     // El metodo sort ordena segun el valor mayor igual o menor que cero dependiendo la funciona comparadora
     cache.sort((a, b) => {
-      if (a[type] < b[type])
-        return order === "A-Z" || order === "Menor a Mayor" ? -1 : 1;
-      if (a[type] > b[type])
-        return order === "A-Z" || order === "Menor a Mayor" ? 1 : -1;
+      if(a[type] < b[type]) return (order === "A-Z" || order === 'Menor a Mayor') ? -1 : 1;
+      if(a[type] > b[type]) return (order === "A-Z" || order === 'Menor a Mayor') ? 1 : -1;
       return 0;
-    });
-
+    })
+    
     setRecipesByName(cache);
-  };
+  }
 
-  useEffect(() => {
-    orderByProp();
-  }, [orderBy]);
+    useEffect(() => {
+      orderByProp();
+    }, [orderBy])
 
-  //                 Paginacion del contenido             //-----------------------------
 
-  const [currentPage, setCurrentPage] = useState(1); //Pagina Actual seteada en 1
-  const [numberOfPage, setNumberOfPage] = useState(0); //Numero de Paginas seteado en 0
-  const [totalRecipes, setTotalRecipes] = useState([]); //Recetas Totales Seteada en Array Vacio
+    //                 Paginacion del contenido             //-----------------------------
 
-  const indexFirstPageRecipe = () => (currentPage - 1) * 9; // Indice del primer Elemento
-  const indexLastPageRecipe = () => indexFirstPageRecipe() + 9; //Indice del segundo elemento
 
-  const handlePageNumber = (number) => {
-    //Manejo del numero de pagina
-    setCurrentPage(number);
-  };
+    const [currentPage, setCurrentPage] = useState(1);    //Pagina Actual seteada en 1
+    const [numberOfPage, setNumberOfPage] = useState(0);    //Numero de Paginas seteado en 0
+    const [totalRecipes, setTotalRecipes] = useState([]);   //Recetas Totales Seteada en Array Vacio
 
-  useEffect(() => {
-    //Cambio de estado local de Total Recipes indicando los indices que tiene que renderizar en cada pagina
-    setTotalRecipes(
-      recipesByName.slice(indexFirstPageRecipe(), indexLastPageRecipe())
-    );
-    setNumberOfPage(Math.ceil(recipesByName.length / 9)); // cambiando el estado local de numeros de paginas a renderiza
-  }, [recipesByName, currentPage]);
+    const indexFirstPageRecipe = () => (currentPage - 1) * 9;  // Indice del primer Elemento
+    const indexLastPageRecipe = () => indexFirstPageRecipe() + 9;  //Indice del segundo elemento
 
-  useEffect(() => {
-    setCurrentPage(1); //setea el numero de pagina actual a 1 cuando recipesName Cambia
-  }, [recipesByName]);
+    const handlePageNumber = (number) => {   //Manejo del numero de pagina
+        setCurrentPage(number);
+    };
 
+    useEffect(() => { //Cambio de estado local de Total Recipes indicando los indices que tiene que renderizar en cada pagina
+        setTotalRecipes(recipesByName.slice(indexFirstPageRecipe(), indexLastPageRecipe())); 
+        setNumberOfPage(Math.ceil(recipesByName.length / 9)); // cambiando el estado local de numeros de paginas a renderiza
+    }, [recipesByName, currentPage]);
+
+    useEffect(() => {
+        setCurrentPage(1) //setea el numero de pagina actual a 1 cuando recipesName Cambia 
+    },[recipesByName])
+
+    
   /*const mapArrayDeObetos = allRecipes.map((r) =>{
     return {name:r.title,
             img:r.image,
@@ -144,81 +140,48 @@ export default function Home() {
     var rValue = myArray[rand];
     return rValue;
   };
+console.log (randomTip)
 
+  
   return (
-    <div className={s.containerMain}>
+    <div className>
       <NavBar />
       <SearchBar />
 
-      <div className={s.mainContainDiv}>
-        <div className={s.filtersContainerDiv}>
-          <Filters />
-        </div>
-        <div className={s.mainRecipesDiv}>
-          {recipeByIdAutocomplete && (
-            <RecipeCard
-              id={recipeByIdAutocomplete.id}
-              title={recipeByIdAutocomplete.title}
-              image={recipeByIdAutocomplete.image}
-              diets={recipeByIdAutocomplete.diets}
-            />
-          )}
-
-          <div className={s.cardsContainer}>
-            {(orderBy.order !== "" || filterbyDiet !== "") &&
-              (totalRecipes
-                ?.slice(0, 3)
-                .map((recipe) => (
-                  <RecipeCard
-                    key={recipe.id}
-                    id={recipe.id}
-                    title={recipe.title}
-                    image={recipe.image}
-                    diets={recipe.diets}
-                  />
-                )) || (
-                <div className="nFound">
-                  <img className="not found" alt="no Results" />
-                  <h2>No se encontraron resultados</h2>
-                </div>
-              ))}
-          </div>
-
-          <div className={s.healtyTipDiv}>
-            <div className={s.healtyTipIconDiv}>💡</div>
-            <div className={s.verticalDiv}></div>
-            <div className={s.healtyTipMainContain}>
-              <p>Healthy Tip</p>
-              <p>{randomTip()}</p>
+      <div className='container-Cards'>
+                {((orderBy.order !== "") || (filter !== "") || (nameValue !== "")) &&
+                (totalRecipes?.map((recipe) =>
+                        (<div key={recipe.id} className='divCard'>
+                        <RecipeCard
+                        id={recipe.id}
+                        title={recipe.title}
+                        image={recipe.image}
+                        diets={recipe.diets}/>
+                        </div>))|| (
+              <div className= "nFound">
+              <img className="not found" alt="no Results" />
+              <h2>No se encontraron resultados</h2>
             </div>
-          </div>
+          ))}
+                        
+                </div>
 
-          <div className={s.moreRecipesDiv}>
-            {totalRecipes?.slice(3).map((recipe) => (
-              <RecipeCardHorizontal
-                key={recipe.id}
-                id={recipe.id}
-                title={recipe.title}
-                image={recipe.image}
-                diets={recipe.diets}
-              />
-            ))}
-          </div>
+                <div>
 
-          <hr />
-          <div className={s.divPagination}>
-            {(orderBy.order !== "" ||
-              filterbyDiet !== "" ||
-              nameValue !== "") && (
-              <Paginations
-                currentPage={currentPage}
-                numberOfPage={numberOfPage}
-                handlePageNumber={handlePageNumber}
-              />
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+                <span>Healthy Tip</span>
+                <br />
+                   {randomTip()}
+                   </div>
+                <hr/>
+                    <Paginations currentPage={currentPage} 
+                    numberOfPage={numberOfPage} handlePageNumber={handlePageNumber}/>
+            </div>
+        
+    );
 }
+      
+     
+      
+
+
+

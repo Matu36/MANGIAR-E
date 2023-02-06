@@ -21,6 +21,7 @@ export default function App() {
       <Routes>
         <Route exact path={"/home"} element={<Home />} />
         <Route exact path={"/home"} element={<NavBar />} />
+        <Route exact path={"/createrecipe"} element={<CreateRecipe />} />
         <Route path="/" element={<LandingPage />} />
         <Route exact path="formUser" element={<CreateUser />} />
         <Route exact path="/recipes/:id" element={<RecipeDetail />} />
