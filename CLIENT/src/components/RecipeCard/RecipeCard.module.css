@@ -29,7 +29,7 @@
 }
 
 .dietsDiv p {
-  background-color: rgb(59, 111, 170);
+  background-color: green;
   color: #fff;
   font-size: 12px;
   padding: 5px 10px;
@@ -45,7 +45,6 @@
   padding: 5px 10px;
   background-color: orange;
   border: none;
-  border-radius: 5px;
   font-weight: bold;
   
 }
