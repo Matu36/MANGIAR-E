@@ -54,7 +54,7 @@ export default function LandingPage() {
           <Slide>
             {slideImages.map((slideImage, index) => (
               <div key={index}>
-                <div
+                <div className= {style.image}
                   style={{
                     ...divStyle,
                     backgroundImage: `url(${slideImage.url})`,
@@ -66,7 +66,7 @@ export default function LandingPage() {
         </div>
       </div>
       <div className={style.colaborators}>
-        <h4>Colaboradores</h4>
+        
       </div>
     </div>
   );

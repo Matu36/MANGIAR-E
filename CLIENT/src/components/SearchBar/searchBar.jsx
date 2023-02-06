@@ -84,7 +84,7 @@ export default function SearchBar() {
           onFocus={handleOnFocus}
           autoFocus
           formatResult={formatResult}
-          placeholder="Buscar Recetas"
+          placeholder="Search Recipe"
         />
       </div>
     </div>
