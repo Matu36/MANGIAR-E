@@ -14,11 +14,6 @@ export default function SearchBar() {
   const recipes = useSelector((state) => state.recipes);
   const diets = useSelector((state) => state.diets);
   const orderBy = useSelector((state) => state.orderBy);
-  const recipeDetailIdAutocomplete = useSelector(
-    (state) => state.recipeIdAutocomplete
-  );
-
-  console.log(recipeDetailIdAutocomplete);
 
   const mapRecipes = recipes.map((r) => {
     return { name: r.title, id: r.id, img: r.image, diet: r.diets };
@@ -34,7 +29,6 @@ export default function SearchBar() {
 
   const handleOnSelect = (item) => {
     dispatch(setRecipeIdAutocomplete(item.id));
-    console.log(item);
   };
 
   const handleOnFocus = () => {
@@ -54,7 +48,6 @@ export default function SearchBar() {
   };
 
   const handleFilterbyDiet = (event) => {
-    console.log(event);
     dispatch(filterByDiet(event.value));
   };
 
