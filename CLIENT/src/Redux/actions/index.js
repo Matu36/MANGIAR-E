@@ -31,7 +31,6 @@ export const getRecipeDetail = (id) => async  dispatch => {
 //CREAR RECETA
 export const createRecipe = ({id, title, instructions, image, diets, ingredients}) => 
 {
-  console.log(JSON.stringify({id, title, instructions, image, diets, ingredients}));
   return dispatch => fetch(`http://localhost:3001/recipes`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
