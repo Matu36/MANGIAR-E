@@ -1,6 +1,10 @@
 import "./App.css";
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+<<<<<<< HEAD
+=======
+import CreateRecipe from "./pages/CreateRecipe/CreateRecipe";
+>>>>>>> d9e89152ad6081261f9e705d473f964cf93bc1af
 import LandingPage from "./pages/LandingPage/LandingPage.jsx";
 import CreateUser from "./components/FormUser/formUser";
 import Home from "./pages/Home/Home.jsx";
