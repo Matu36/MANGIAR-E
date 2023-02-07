@@ -6,7 +6,9 @@ import {
   SET_SEARCH_VALUE_NAME,
   SET_RECIPEID_AUTOCOMPLETE,
   GET_INGREDIENTS,
-  CREATE_RECIPE
+  CREATE_RECIPE,
+  SET_FILTERED_INGREDIENTS,
+  DELETE_FILTERED_INGREDIENT,
 } from "../actions/index.js";
 
 const initialState = {
@@ -36,8 +38,9 @@ const initialState = {
   },
 
   searchValueName: "",
-  
-  ingredients: null
+
+  ingredients: null,
+  filteredIngredients: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -59,6 +62,20 @@ const rootReducer = (state = initialState, action) => {
     case SET_ORDER_BY:
       return { ...state, orderBy: action.payload };
 
+    case SET_FILTERED_INGREDIENTS:
+      return {
+        ...state,
+        filteredIngredients: [...state.filteredIngredients, action.payload],
+      };
+
+    case DELETE_FILTERED_INGREDIENT:
+      return {
+        ...state,
+        filteredIngredients: state.filteredIngredients.filter(
+          (f) => f !== action.payload
+        ),
+      };
+
     case SET_RECIPEID_AUTOCOMPLETE:
       return { ...state, recipeIdAutocomplete: action.payload };
 
@@ -67,10 +84,10 @@ const rootReducer = (state = initialState, action) => {
 
     case GET_INGREDIENTS:
       return { ...state, ingredients: action.payload };
-  
+
     case CREATE_RECIPE:
       return { ...state, recipes: [...state.recipes, action.payload] };
-    
+
     default:
       return { ...state };
   }

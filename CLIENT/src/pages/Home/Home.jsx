@@ -4,7 +4,7 @@ import s from "./Home.module.css";
 import NavBar from "../../components/NavBar/NavBar";
 import SearchBar from "../../components/SearchBar/searchBar";
 import { healthyTips } from "../../components/healthyTips/healthyTips";
-import { getRecipes } from "../../Redux/actions";
+import { getRecipes, getIngredients } from "../../Redux/actions";
 import Paginations from "../../components/Paginations/Paginations";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
 import RecipeCardHorizontal from "../../components/RecipeCardHorizontal/RecipeCardHorizontal";
@@ -20,9 +20,11 @@ export default function Home() {
   // componentDidMount para hacer la solicitud a la api/db al iniciar el componente Home una sola vez.
   useEffect(() => {
     dispatch(getRecipes());
+    dispatch(getIngredients());
   }, []);
 
   const [recipeByIdAutocomplete, setrecipeByIdAutocomplete] = useState();
+  const [recipesToShow, setRecipesToShow] = useState(allRecipes)
 
   const filterById = () => {
     const cache = [...allRecipes];
@@ -55,23 +57,51 @@ export default function Home() {
 
   //                 Filtro por Name                   //----------------
 
-  const [recipesByName, setRecipesByName] = useState(recipesByDiet);
+  // const [recipesByName, setRecipesByName] = useState(recipesByDiet);
 
-  const nameValue = useSelector((state) => state.searchValueName);
+  // const nameValue = useSelector((state) => state.searchValueName);
 
-  const filterByName = () => {
-    let arrayCache = [...recipesByDiet];
+  // const filterByName = () => {
+  //   let arrayCache = [...recipesByDiet];
 
-    arrayCache = arrayCache.filter((recipe) =>
-      recipe.title.toLowerCase().includes(nameValue.toLowerCase())
-    );
+  //   arrayCache = arrayCache.filter((recipe) =>
+  //     recipe.title.toLowerCase().includes(nameValue.toLowerCase())
+  //   );
 
-    setRecipesByName(arrayCache);
-  };
+  //   setRecipesByName(arrayCache);
+  // };
+
+  // useEffect(() => {
+  //   filterByName();
+  // }, [nameValue, recipesByDiet]);
+
+  // ------------------------  FILTRO POR INGREDIENTE ------------------------
+
+  const [recipesByIngredient, setRecipesByIngredient] = useState(recipesByDiet);
+  const filteredIngredients = useSelector((state) => state.filteredIngredients);
+
+  function filterByIngredient() {
+    if (recipesByDiet.length <= 0) setRecipesByIngredient(allRecipes);
+    if (filteredIngredients.length <= 0)
+      recipesByDiet.length > 0
+        ? setRecipesByIngredient(recipesByDiet)
+        : setRecipesByIngredient(allRecipes);
+    else
+      setRecipesByIngredient(
+        recipesByIngredient.filter((recipe) =>
+          recipe.ingredients.some((ingredient) =>
+            filteredIngredients.includes(ingredient.name)
+          )
+        )
+      );
+  }
 
   useEffect(() => {
-    filterByName();
-  }, [nameValue, recipesByDiet]);
+    filterByIngredient();
+    // console.log("allrecipes: ", allRecipes);
+    console.log("recipesByDiet: ", recipesByDiet);
+    console.log("recipesByIngredient: ", recipesByIngredient);
+  }, [filteredIngredients, recipesByDiet]);
 
   //                 Filtro por Orden de Healthscore      //----------------------------
 
@@ -80,9 +110,9 @@ export default function Home() {
   const orderByProp = () => {
     const { order, type } = orderBy;
 
-    let cache = [...recipesByName];
+    let cache = [...recipesByIngredient];
 
-    if (order === "") return setRecipesByName(recipesByName);
+    if (order === "") return setRecipesByIngredient(recipesByIngredient);
     // El metodo sort ordena segun el valor mayor igual o menor que cero dependiendo la funciona comparadora
     cache.sort((a, b) => {
       if (a[type] < b[type])
@@ -90,9 +120,9 @@ export default function Home() {
       if (a[type] > b[type])
         return order === "A-Z" || order === "Menor a Mayor" ? 1 : -1;
       return 0;
-    });
+    }); 
 
-    setRecipesByName(cache);
+    setRecipesByIngredient(cache);
   };
 
   useEffect(() => {
@@ -116,14 +146,14 @@ export default function Home() {
   useEffect(() => {
     //Cambio de estado local de Total Recipes indicando los indices que tiene que renderizar en cada pagina
     setTotalRecipes(
-      recipesByName.slice(indexFirstPageRecipe(), indexLastPageRecipe())
+      recipesByIngredient.slice(indexFirstPageRecipe(), indexLastPageRecipe())
     );
-    setNumberOfPage(Math.ceil(recipesByName.length / 9)); // cambiando el estado local de numeros de paginas a renderiza
-  }, [recipesByName, currentPage]);
+    setNumberOfPage(Math.ceil(recipesByIngredient.length / 9)); // cambiando el estado local de numeros de paginas a renderiza
+  }, [recipesByIngredient, currentPage]);
 
   useEffect(() => {
     setCurrentPage(1); //setea el numero de pagina actual a 1 cuando recipesName Cambia
-  }, [recipesByName]);
+  }, [recipesByIngredient]);
 
   /*const mapArrayDeObetos = allRecipes.map((r) =>{
     return {name:r.title,
@@ -165,7 +195,9 @@ export default function Home() {
           )}
 
           <div className={s.cardsContainer}>
-            {(orderBy.order !== "" || filterbyDiet !== "") &&
+            {(orderBy.order !== "" ||
+              filterbyDiet !== "" ||
+              filteredIngredients.length <= 0) &&
               (totalRecipes
                 ?.slice(0, 3)
                 .map((recipe) => (
@@ -208,8 +240,7 @@ export default function Home() {
           <hr />
           <div className={s.divPagination}>
             {(orderBy.order !== "" ||
-              filterbyDiet !== "" ||
-              nameValue !== "") && (
+              filterbyDiet !== "") && (
               <Paginations
                 currentPage={currentPage}
                 numberOfPage={numberOfPage}

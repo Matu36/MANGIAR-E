@@ -7,3 +7,28 @@
     flex-direction: column;
     gap: 1rem;
 }
+
+.selectedIngredientsDiv {
+    width: 100%;
+    min-height: 3rem;
+    border: 1px solid #b3b3b3;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 0.5rem;
+    box-sizing: border-box;
+}
+
+.ingredient {
+    background-color: brown;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 12px;
+    height: 1.5rem;
+    padding: 0 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}

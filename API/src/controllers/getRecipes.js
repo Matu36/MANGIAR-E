@@ -98,5 +98,22 @@ module.exports = (req, res) => {
         },
       ],
     },
+    {
+      id: 5,
+      title: "Receta 5",
+      image: "https://spoonacular.com/recipeImages/782585-312x231.jpg",
+      instructions:
+        "Rinse the cannellini beans and soak for 8 hours or overnight in several inches of water.",
+      diets: ["gluten free", "dairy free", "lacto ovo vegetarian", "vegan"],
+      ingredients: [
+        {
+          id: 10716050,
+          name: "carne",
+          amount: 100,
+          price: 1500,
+          unit: "mililiters",
+        },
+      ],
+    },
   ]);
 };
