@@ -5,6 +5,8 @@ import {
   SET_ORDER_BY,
   SET_SEARCH_VALUE_NAME,
   SET_RECIPEID_AUTOCOMPLETE,
+  GET_INGREDIENTS,
+  CREATE_RECIPE
 } from "../actions/index.js";
 
 const initialState = {
@@ -34,11 +36,14 @@ const initialState = {
   },
 
   searchValueName: "",
+  
+  ingredients: null
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_RECIPES:
+      console.log(state.recipes);
       return {
         ...state,
         recipes: action.payload,
@@ -60,6 +65,13 @@ const rootReducer = (state = initialState, action) => {
 
     case SET_SEARCH_VALUE_NAME:
       return { ...state, searchValue: action.payload };
+
+    case GET_INGREDIENTS:
+      return { ...state, ingredients: action.payload };
+  
+    case CREATE_RECIPE:
+      return { ...state, recipes: [...state.recipes, action.payload] };
+    
     default:
       return { ...state };
   }
