@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {GET_RECIPES, 
   GET_RECIPE_DETAIL, 
   FILTER_BY_DIET, 
@@ -5,6 +6,21 @@ import {GET_RECIPES,
   SET_SEARCH_VALUE_NAME,
  SET_RECIPEID_AUTOCOMPLETE } from '../actions/index.js'
 
+=======
+import {
+  GET_RECIPES,
+  GET_RECIPE_DETAIL,
+  FILTER_BY_DIET,
+  SET_ORDER_BY,
+  CLEAR_FILTERS,
+  SET_SEARCH_VALUE_NAME,
+  SET_RECIPEID_AUTOCOMPLETE,
+  GET_INGREDIENTS,
+  CREATE_RECIPE,
+  SET_FILTERED_INGREDIENTS,
+  DELETE_FILTERED_INGREDIENT,
+} from "../actions/index.js";
+>>>>>>> rama-para-solucionar
 
 const initialState = {
   recipes: [], 
@@ -30,7 +46,14 @@ const initialState = {
     type: undefined,
   },
 
+<<<<<<< HEAD
   searchValueName: ""
+=======
+  searchValueName: "",
+
+  ingredients: null,
+  filteredIngredients: [],
+>>>>>>> rama-para-solucionar
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -51,13 +74,51 @@ const rootReducer = (state = initialState, action) => {
 
     case SET_ORDER_BY:
       return { ...state, orderBy: action.payload };
+<<<<<<< HEAD
       
       case SET_RECIPEID_AUTOCOMPLETE:
+=======
+
+    case SET_FILTERED_INGREDIENTS:
+      return {
+        ...state,
+        filteredIngredients: [...state.filteredIngredients, action.payload],
+      };
+
+    case DELETE_FILTERED_INGREDIENT:
+      return {
+        ...state,
+        filteredIngredients: state.filteredIngredients.filter(
+          (f) => f !== action.payload
+        ),
+      };
+
+    case CLEAR_FILTERS:
+      return {
+        ...state,
+        filteredIngredients: [],
+        filterByDiet: "",
+      };
+
+    case SET_RECIPEID_AUTOCOMPLETE:
+>>>>>>> rama-para-solucionar
       return { ...state, recipeIdAutocomplete: action.payload };
 
     case SET_SEARCH_VALUE_NAME:
       return { ...state, searchValue: action.payload };
+<<<<<<< HEAD
     default: return {...state}
+=======
+
+    case GET_INGREDIENTS:
+      return { ...state, ingredients: action.payload };
+
+    case CREATE_RECIPE:
+      return { ...state, recipes: [...state.recipes, action.payload] };
+
+    default:
+      return { ...state };
+>>>>>>> rama-para-solucionar
   }
 };
 

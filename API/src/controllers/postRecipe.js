@@ -8,7 +8,11 @@ const postRecipe = async (req, res) => {
     let id = 1 + await Recipes.count({
       where: {
         id: {
+<<<<<<< HEAD
           [Op.lt]: 600000
+=======
+          [Op.lt]: 60000
+>>>>>>> rama-para-solucionar
         }}
       });
 

@@ -1,10 +1,21 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+<<<<<<< HEAD
 import { setRecipeIdAutocomplete, setSearchValueName } from "../../Redux/actions/index.js";
 import { ReactSearchAutocomplete } from 'react-search-autocomplete';
 import { filterByDiet, setOrderBy } from "../../Redux/actions/index.js";
 import Select from 'react-select';
 
+=======
+import {
+  setRecipeIdAutocomplete,
+  setSearchValueName,
+} from "../../Redux/actions/index.js";
+import { ReactSearchAutocomplete } from "react-search-autocomplete";
+import { filterByDiet, setOrderBy, getIngredients } from "../../Redux/actions/index.js";
+import s from "../SearchBar/searchBar.module.css";
+import Select from "react-select";
+>>>>>>> rama-para-solucionar
 
 export default function SearchBar() {
   const dispatch = useDispatch();
@@ -33,9 +44,16 @@ export default function SearchBar() {
   }
 
   const handleOnSelect = (item) => {
+<<<<<<< HEAD
     dispatch (setRecipeIdAutocomplete(item.id))
     console.log(item)
   }
+=======
+    dispatch(setRecipeIdAutocomplete(item.id));
+    dispatch(filterByDiet(""));
+    dispatch(getIngredients(item.id))
+  };
+>>>>>>> rama-para-solucionar
 
   const handleOnFocus = () => {
     console.log('Focused')

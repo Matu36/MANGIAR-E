@@ -171,12 +171,21 @@ async function apiMock (apiRegs = 10){
 //  log = // inserts en ingredient_units
   (await Ingredient_units.bulkCreate(auxIngredients.map(({id, unit}) => ({ingredientId: id, unit: unit || 'units'}))
   .reduce((aux, el) => aux.concat((!aux.find(el2 => ((el2.ingredientId === el.id) && (el2.unit === el.unit)))) && el), []).filter(el => el))).map(({dataValues}) => dataValues);
+<<<<<<< HEAD
 
   log = // inserts en recipe_ingredients
   (await Recipe_ingredients.bulkCreate(recipesArr.reduce((aux, recipe) => aux.concat(...recipe.ingredients.map(({id, amount, unit}) => ({recipeId: recipe.id, ingredientId: id, amount, unit: unit || 'units'}))), [])
       .reduce((aux, el) => aux.concat((el.ingredientId > 0) && (!aux.find(el2 => ((el2.ingredientId === el.ingredientId) && (el2.recipeId === el.recipeId)))) && el), []).filter(el => el))).map(({dataValues}) => dataValues);
 
 //console.log (log, log.length);
+=======
+
+//  log = // inserts en recipe_ingredients
+  (await Recipe_ingredients.bulkCreate(recipesArr.reduce((aux, recipe) => aux.concat(...recipe.ingredients.map(({id, amount, unit}) => ({recipeId: recipe.id, ingredientId: id, amount, unit: unit || 'units'}))), [])
+      .reduce((aux, el) => aux.concat((el.ingredientId > 0) && (!aux.find(el2 => ((el2.ingredientId === el.ingredientId) && (el2.recipeId === el.recipeId)))) && el), []).filter(el => el))).map(({dataValues}) => dataValues);
+
+//  console.log (log, log.length);
+>>>>>>> rama-para-solucionar
 }
 
 module.exports = async (api) => {

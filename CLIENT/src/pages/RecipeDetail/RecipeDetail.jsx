@@ -1,60 +1,59 @@
-import React , { useEffect } from "react";
-import { useDispatch, useSelector} from "react-redux";
-import {useParams, useNavigate } from "react-router-dom";
-import * as actions from "../../Redux/actions/index";
-//import style from "../RecipeDetail/RecipeDetail.module.css";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams, useNavigate, NavLink } from "react-router-dom";
+import { getRecipeDetail } from "../../Redux/actions";
+import s from "../RecipeDetail/RecipeDetail.module.css";
+import NavBar from "../../components/NavBar/NavBar";
 
 const RecipeDetail = () => {
-  let { idrecipe } = useParams();
-  let history = useNavigate();
+  let { id } = useParams();
   let dispatch = useDispatch();
-  let recipe = useSelector(state => state.recipeDetail);
+  let recipe = useSelector((state) => state.recipeDetail);
+console.log (recipe);
+  if (recipe.msg) alert(recipe.msg);
 
-  if(recipe.msg) alert(recipe.msg)
-  const {name, image, summary, healthScore, stepByStep, diets} = recipe;
-  
-  const handleClick = () => {
-    history.push('/home');
-  }
-  
-  useEffect( () => {
-    dispatch(actions.getRecipeDetail(idrecipe));
+  const { title, image, instructions, raiting, ingredients, diets } = recipe[0];
 
-  },[idrecipe,dispatch]);
+  const handleClick = () => {};
+
+  useEffect(() => {
+    dispatch(getRecipeDetail(id));
+  }, [id]);
 
   return (
-    <div className="container-main-detail">
-      <div className="container-button-home">
-
-          <button type="button" onClick={handleClick}>
-              Go home
-          </button>
-
-      </div>
-      <h3>{name}</h3>
-
-      <div className="container-img-summary">
-
-      <div className="recipe-detail-img"><img src={image} alt={name}/></div>
-      <div className="recipe-detail-summary"><p>{summary}</p></div>
-
-      </div>
-      <h3 className="recipeDetail">healthScore: {healthScore}</h3>
-      <ul className="recipeDetail">
-      {stepByStep && stepByStep.map(({ numberStep, description}) => {
-        return (<li>{numberStep} : {description}</li>)
+    <div className={s.containerMain}>
       
-      })}
+      <div className={s.containerButtonHome}>
+        <NavBar />
+        <br />
+        
+      </div>
+
+    
+      <div className={s.containerImageInstrutions}>
+      <h1 className= {s.title}>{title}</h1>
+        <div className={s.containerImage}>
+          <img src={image} alt={title} />
+        </div>
+        <div className={s.containerinstructions}>
+          <p>{instructions}</p>
+        </div>
+      </div>
+      <h3 className="recipeDetail">raiting: {raiting}</h3>
+      <ul className="recipeDetail">
+        {ingredients &&
+          ingredients.map(({ name, amount, unit, price }) => {
+            return <li>{`${name} : ${amount} ${unit} $${price}`}</li>;
+          })}
       </ul>
       <ul className="recipeDetail">
-      {diets && diets.map(diet => {
-        return (<li>{diet}</li>)
-      
-      })} 
+        {diets &&
+          diets.map((diet) => {
+            return <li>{diet}</li>;
+          })}
       </ul>
     </div>
   );
 };
-
 
 export default RecipeDetail;

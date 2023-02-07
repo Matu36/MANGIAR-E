@@ -7,7 +7,13 @@ module.exports = sequelize => {
       primaryKey: true
     },
     diet: {
+<<<<<<< HEAD
       type: DataTypes.ENUM(
+=======
+      type: DataTypes.STRING
+      /*
+      ENUM(
+>>>>>>> rama-para-solucionar
         "gluten free",
         "dairy free",
         "lacto ovo vegetarian",
@@ -19,7 +25,12 @@ module.exports = sequelize => {
         "pescatarian",
         "ketogenic",
         "fodmap friendly"
+<<<<<<< HEAD
       ),
+=======
+      )
+      */,
+>>>>>>> rama-para-solucionar
       primaryKey: true
     }
   }, {

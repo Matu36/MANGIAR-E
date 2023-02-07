@@ -15,6 +15,7 @@ function NavBar() {
     <button className= {s.btn1}>CREATE YOUR OWN RECIPE</button>
    </Link>
    <Link to = {"/myRecipes"}>
+<<<<<<< HEAD
 
     <button className= {s.btn1}>My recipes</button>
    </Link>
@@ -23,6 +24,15 @@ function NavBar() {
    </Link>
    <Link to = {"/contact"}>
     <button className= {s.btn1}>Contact</button>
+=======
+    <button className= {s.btn1}>MY RECIPES</button>
+   </Link>
+   <Link to = {"/aboutUs"}>
+    <button className= {s.btn1}>ABOUT US</button>
+   </Link>
+   <Link to = {"/contact"}>
+    <button className= {s.btn1}>CONTACT</button>
+>>>>>>> rama-para-solucionar
    </Link>
       </div>
 

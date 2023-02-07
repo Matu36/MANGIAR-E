@@ -1,16 +1,27 @@
 import "./App.css";
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+<<<<<<< HEAD
 import CreateRecipe from "./pages/CreateRecipe/CreateRecipe";
+=======
+>>>>>>> rama-para-solucionar
 import LandingPage from "./pages/LandingPage/LandingPage.jsx";
 import CreateUser from "./components/FormUser/formUser";
 import Home from "./pages/Home/Home.jsx";
+import CreateRecipe from "./pages/CreateRecipe/CreateRecipe.jsx";
 import RecipeDetail from "./pages/RecipeDetail/RecipeDetail.jsx";
+<<<<<<< HEAD
 import MyRecipes from "./components/MyRecipes/MyRecipes";
 import AboutUs from "./pages/AboutUs/AboutUs";
 import Contact from "./pages/Contact/Contact";
+=======
+>>>>>>> rama-para-solucionar
 import NavBar from "./components/NavBar/NavBar";
 import axios from "axios";
+import AboutUs from "./pages/AboutUs/AboutUs";
+import Contact from "./pages/Contact/Contact";
+import MyRecipes from "./components/MyRecipes/MyRecipes";
+
 axios.defaults.baseURL = 'http://localhost:3001/'
 // axios.defaults.baseURL = [insertar URL del back deployado aquí]
 
@@ -26,9 +37,15 @@ export default function App() {
         <Route exact path="formUser" element={<CreateUser />} />
         <Route exact path="/recipes/:id" element={<RecipeDetail />} />
         <Route exact path="/createRecipe" element={<CreateRecipe />} />
+<<<<<<< HEAD
         <Route exact path="/myRecipes" element={<MyRecipes />} />
         <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/aboutUs" element={<AboutUs />} />
+=======
+        <Route exact path="/aboutUs" element={<AboutUs />} />
+        <Route exact path="/contact" element={<Contact />} />
+        <Route exact path="/myRecipes" element={<MyRecipes />} />
+>>>>>>> rama-para-solucionar
       </Routes>
     </>
   );
