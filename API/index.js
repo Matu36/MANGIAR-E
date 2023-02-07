@@ -1,10 +1,10 @@
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const modelsMock = require('./src/helpers/modelsMock.js');
+//const modelsMock = require('./src/helpers/modelsMock.js');
 
 conn.sync(
   {
-    force: true
+    force: false
 //    alter: true
   }
 )
@@ -16,6 +16,6 @@ conn.sync(
 })
 
 // Inserts de prueba en DB
-.then(() => modelsMock(15)) // nro Api Regs --- 0: ONLY LOCAL
+ //.then(() => modelsMock(150)) // nro Api Regs --- 0: ONLY LOCAL
 
 .catch(err => console.log(err));
