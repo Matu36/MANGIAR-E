@@ -24,7 +24,7 @@ export default function Home() {
   }, []);
 
   const [recipeByIdAutocomplete, setrecipeByIdAutocomplete] = useState();
-  const [recipesToShow, setRecipesToShow] = useState(allRecipes)
+  const [recipesToShow, setRecipesToShow] = useState(allRecipes);
 
   const filterById = () => {
     const cache = [...allRecipes];
@@ -83,9 +83,9 @@ export default function Home() {
   function filterByIngredient() {
     if (recipesByDiet.length <= 0) setRecipesByIngredient(allRecipes);
     if (filteredIngredients.length <= 0)
-      recipesByDiet.length > 0
-        ? setRecipesByIngredient(recipesByDiet)
-        : setRecipesByIngredient(allRecipes);
+      filterbyDiet === "All Diets"
+        ? setRecipesByIngredient(allRecipes)
+        : setRecipesByIngredient(recipesByDiet);
     else
       setRecipesByIngredient(
         recipesByIngredient.filter((recipe) =>
@@ -120,7 +120,7 @@ export default function Home() {
       if (a[type] > b[type])
         return order === "A-Z" || order === "Menor a Mayor" ? 1 : -1;
       return 0;
-    }); 
+    });
 
     setRecipesByIngredient(cache);
   };
@@ -239,8 +239,7 @@ export default function Home() {
 
           <hr />
           <div className={s.divPagination}>
-            {(orderBy.order !== "" ||
-              filterbyDiet !== "") && (
+            {(orderBy.order !== "" || filterbyDiet !== "") && (
               <Paginations
                 currentPage={currentPage}
                 numberOfPage={numberOfPage}
