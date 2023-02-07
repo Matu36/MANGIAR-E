@@ -1,25 +1,27 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes } = require('sequelize');
 
-module.exports = (sequelize) => {
-  sequelize
-    .define(
-      "Recipe_ingredients",
-      {
-        amount: {
-          type: DataTypes.FLOAT,
-          allowNull: false,
-        },
-        unit: {
-          type: DataTypes.STRING,
-          allowNull: false,
-          validate: {
-            notEmpty: true,
-          },
-        },
-      },
-      {
-        timestamps: false,
+module.exports = sequelize => {
+  sequelize.define('Recipe_ingredients', {
+    recipeId: {
+      type: DataTypes.INTEGER,
+      primaryKey: true
+    },
+    ingredientId: {
+      type: DataTypes.INTEGER,
+      primaryKey: true
+    },
+    amount: {
+      type: DataTypes.FLOAT,
+      allowNull: false
+    },
+    unit: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true
       }
-    )
-    .removeAttribute("id");
+    }
+  }, {
+    timestamps: false
+  }).removeAttribute('id');
 };
