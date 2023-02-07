@@ -10,7 +10,7 @@ import axios from "axios";
 import CreateRecipe  from "./pages/CreateRecipe/CreateRecipe";
 import AboutUs from "./pages/AboutUs/AboutUs";
 import Contact from "./pages/Contact/Contact";
-import MyRecipes from "./components/myRecipes/MyRecipes";
+import MyRecipes from "./components/MyRecipes/MyRecipes";
 
 axios.defaults.baseURL = 'http://localhost:3001/'
 // axios.defaults.baseURL = [insertar URL del back deployado aquí]
