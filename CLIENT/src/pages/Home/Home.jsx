@@ -99,8 +99,8 @@ export default function Home() {
   useEffect(() => {
     filterByIngredient();
     // console.log("allrecipes: ", allRecipes);
-    console.log("recipesByDiet: ", recipesByDiet);
-    console.log("recipesByIngredient: ", recipesByIngredient);
+    // console.log("recipesByDiet: ", recipesByDiet);
+    // console.log("recipesByIngredient: ", recipesByIngredient);
   }, [filteredIngredients, recipesByDiet]);
 
   //                 Filtro por Orden de Healthscore      //----------------------------

@@ -3,6 +3,7 @@ import {
   GET_RECIPE_DETAIL,
   FILTER_BY_DIET,
   SET_ORDER_BY,
+  CLEAR_FILTERS,
   SET_SEARCH_VALUE_NAME,
   SET_RECIPEID_AUTOCOMPLETE,
   GET_INGREDIENTS,
@@ -74,6 +75,13 @@ const rootReducer = (state = initialState, action) => {
         filteredIngredients: state.filteredIngredients.filter(
           (f) => f !== action.payload
         ),
+      };
+
+    case CLEAR_FILTERS:
+      return {
+        ...state,
+        filteredIngredients: [],
+        filterByDiet: "",
       };
 
     case SET_RECIPEID_AUTOCOMPLETE:

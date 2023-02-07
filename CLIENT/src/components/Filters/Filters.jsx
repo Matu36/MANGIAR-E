@@ -7,6 +7,7 @@ import {
   setOrderBy,
   setFilteredIngredients,
   deleteFilteredIngredient,
+  clearFilters,
 } from "../../Redux/actions/index.js";
 
 function Filters() {
@@ -53,37 +54,49 @@ function Filters() {
     else dispatch(setFilteredIngredients(value));
   };
 
+  const handleClearButton = () => {
+    clearFilters();
+  };
+
   return (
     <div className={s.container}>
       <Select
-        className={s.SelectByDiets}
+        className={s.select}
         options={optionsDiets}
         onChange={(e) => handleFilterbyDiet(e)}
         placeholder="Order By Diets"
       />
       <Select
-        className="selectOrder"
+        className={s.select}
         options={orderSelectByAlphabetical}
         onChange={(e) => handleOrder(e, { type: "title" })}
         placeholder="Order By Alphabetical"
       />
       <Select
-        className="selectOrder"
+        className={s.select}
         options={optionsIngredients}
         onChange={(e) => handleIngredientesFilter(e.value)}
         placeholder="Seleccionar ingredientes"
       />
       <div className={s.selectedIngredientsDiv}>
         {filteredIngredients.length > 0
-          ? filteredIngredients.map((i) => {
+          ? filteredIngredients.map((i, index) => {
               return (
-                <p className={s.ingredient} onClick={() => handleIngredientesFilter(i)}>
+                <p key={index}
+                  className={s.ingredient}
+                  onClick={() => handleIngredientesFilter(i)}
+                >
                   {`${i[0].toUpperCase()}${i.slice(1)}`} | X
                 </p>
               );
             })
           : null}
       </div>
+      {/* <div className={s.clearButtonDiv}>
+        <button className={s.clearButton} onClick={handleClearButton}>
+          CLEAR FILTERS
+        </button>
+      </div> */}
       {/* <button onClick={() => console.log(ingredients)}>Ingredients</button>
       <button onClick={() => console.log(filteredIngredients)}>
         Filtered Ingredients

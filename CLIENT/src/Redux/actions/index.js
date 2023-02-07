@@ -2,6 +2,7 @@ export const GET_RECIPES = "GET_RECIPES";
 export const GET_RECIPE_DETAIL = "GET_RECIPE_DETAIL";
 export const SET_ORDER_BY = "SET_ORDER_BY";
 export const FILTER_BY_DIET = "FILTER_BY_DIET";
+export const CLEAR_FILTERS = 'CLEAR_FILTERS';
 export const SET_SEARCH_VALUE_NAME = "SET_SEARCH_VALUE_NAME";
 export const SET_RECIPEID_AUTOCOMPLETE = "SET_RECIPEID_AUTOCOMPLETE";
 export const GET_INGREDIENTS = "GET_INGREDIENTS";
@@ -78,6 +79,11 @@ export const setFilteredIngredients = (payload) => {
 export const deleteFilteredIngredient = (payload) => {
   return (dispatch) => dispatch({ type: DELETE_FILTERED_INGREDIENT, payload });
 };
+
+// LIMPIAR FILTROS
+export const clearFilters = () => {
+  return (dispatch) => dispatch({type: CLEAR_FILTERS})
+}
 
 export const setRecipeIdAutocomplete = (recipeIdAutocomplete) => {
   return (dispatch) =>
