@@ -8,7 +8,6 @@ import CreateRecipe from "./pages/CreateRecipe/CreateRecipe.jsx";
 import RecipeDetail from "./pages/RecipeDetail/RecipeDetail.jsx";
 import NavBar from "./components/NavBar/NavBar";
 import axios from "axios";
-import CreateRecipe  from "./pages/CreateRecipe/CreateRecipe";
 import AboutUs from "./pages/AboutUs/AboutUs";
 import Contact from "./pages/Contact/Contact";
 import MyRecipes from "./components/MyRecipes/MyRecipes";

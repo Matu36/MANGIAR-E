@@ -1,4 +1,5 @@
 import React from "react";
+import s from "../Diets/Diets.module.css";
 
 export default class Diets extends React.Component {
   handleClick = event => {
@@ -18,10 +19,10 @@ export default class Diets extends React.Component {
     )
 
 return (
-      <fieldset>
-          <legend>Choose diet's recipe:</legend>
+      <fieldset className= {s.fieldset}>
+          <legend className= {s.legend}>Choose diet's recipe:</legend>
           {diets}
-      </fieldset>
+      </fieldset> 
     );
   }
 }
