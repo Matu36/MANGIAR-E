@@ -21,38 +21,39 @@ const LoginForm = () => {
 
   return (
     <div className={style.container}>
-      <div className={style.iniciosesion}>
-        <h3>Inicio de Sesión</h3>
+      <div className={style.brandLogo}>
+        <div className= {style.brandtittle}>
+        <span> Your Ingredients, Our Recipes </span>
+        </div>
+        <div className= {style.inputs}>
         <form onSubmit={(e) => handleSubmit(e)}>
-          <label> Usuario </label>
-          <input
+          <label className= {style.label}> EMAIL </label>
+          <input className= {style.input}
             type={"text"}
             name={"Usuario"}
             value={input.Usuario}
             onChange={(e) => letHandleOnChange(e)}
           />
           <br />
-          <label> Contraseña </label>
-          <input
+          <label className= {style.label}> PASSWORD </label>
+          <input className= {style.input}
             type={"password"}
             name={"Contraseña"}
             value={input.Contraseña}
             onChange={(e) => letHandleOnChange(e)}
           />
-          <br />
-          <input type={"submit"} value={"Ingresar"} />
-          <br />
-          <br />
+          
+          <button className= {style.button}  type={"submit"} value={"Ingresar"}> LOGIN </button>
+          
         </form>
+        </div>
       </div>
       <div className={style.button}>
         <Link to={"/formUser"}>
-          <button className={style.register}>Registrarse aquí</button>
+          <button className={style.button}>REGISTER</button>
         </Link>
-        <br />
-
         <Link to={"/home"}>
-          <button className={style.register1}>Ingresar como Invitado</button>
+          <button className={style.button}>GUEST USER</button>
         </Link>
 
         <br />

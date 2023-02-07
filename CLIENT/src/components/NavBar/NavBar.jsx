@@ -11,11 +11,18 @@ function NavBar() {
     <Link to = {"/home"}>
     <button className= {s.btn1}>HOME</button>
    </Link>
+<<<<<<< HEAD
    <Link to = {"/createRecipe"}>
     <button className= {s.btn1}>CREATE YOUR OWN RECIPE</button>
    </Link>
    <Link to = {"/myRecipes"}>
 
+=======
+   <Link to = {"/home"}>
+    <button className= {s.btn1}>CREATE YOUR OWN RECIPE</button>
+   </Link>
+   <Link to = {"/home"}>
+>>>>>>> ed081fdef058f708c271b63f873185c0f79a4c6c
     <button className= {s.btn1}>My recipes</button>
    </Link>
    <Link to = {"/aboutUs"}>

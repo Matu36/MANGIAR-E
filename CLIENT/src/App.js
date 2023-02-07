@@ -5,6 +5,7 @@ import CreateRecipe from "./pages/CreateRecipe/CreateRecipe";
 import LandingPage from "./pages/LandingPage/LandingPage.jsx";
 import CreateUser from "./components/FormUser/formUser";
 import Home from "./pages/Home/Home.jsx";
+import CreateRecipe from "./pages/CreateRecipe/CreateRecipe.jsx";
 import RecipeDetail from "./pages/RecipeDetail/RecipeDetail.jsx";
 import MyRecipes from "./components/MyRecipes/MyRecipes";
 import AboutUs from "./pages/AboutUs/AboutUs";
