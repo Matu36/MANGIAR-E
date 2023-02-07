@@ -1,6 +1,6 @@
-const router = require('express').Router();
-const getIngredientsBySearch = require('../controllers/getIngredientsBySearch');
+const router = require("express").Router();
+const getIngredients = require("../controllers/getIngredients");
 
-router.get('/', getIngredientsBySearch);
+router.get("/", getIngredients);
 
 module.exports = router;
