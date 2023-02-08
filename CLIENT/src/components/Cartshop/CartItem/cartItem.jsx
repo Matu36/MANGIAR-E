@@ -20,8 +20,8 @@ const CartItem = ({ item, handleAddItemToCart, handleRemoveItemFromCart }) => {
               variant="contained"
               onClick={() => handleAddItemToCart(item)}
             >
-              +
-            </Button>
+              -
+            </Button >
           </div>
         </div>
         <img src= {item.image} alt="IMG" />
