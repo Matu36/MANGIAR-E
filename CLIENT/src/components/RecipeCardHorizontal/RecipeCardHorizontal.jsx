@@ -1,7 +1,8 @@
 import React from "react";
 import s from "./RecipeCardHorizontal.module.css";
+import { NavLink } from "react-router-dom";
 
-const RecipeCardHorizontal = ({ title, image, diets }) => {
+const RecipeCardHorizontal = ({ id, title, image, diets }) => {
   return (
     <div className={s.container}>
       <div className={s.imageDiv}>
@@ -28,7 +29,9 @@ const RecipeCardHorizontal = ({ title, image, diets }) => {
           <p>⏱ 30'</p>
           <p>👨‍👩‍👦 3 personas</p>
           <p>📖 Difícil</p>
-          <button className={s.button}>MÁS DETALLES</button>
+          <NavLink to={`/recipes/${id}`}>
+          <button className={s.button}>MORE DETAILS</button>
+          </NavLink>
         </div>
       </div>
     </div>

@@ -94,12 +94,12 @@ export const setRecipeIdAutocomplete = (recipeIdAutocomplete) => {
 };
 
 //OBTIENE LOS INGREDIENTES DE DB - HABILITAR LUEGO DE IMPLEMENTAR EL ENDPOINT getIngredients
-/*
-export const getIngredients = () => dispatch => 
-  await fetch(`http://localhost:3001/getIngredients`)
-    .then(data => data.json())
-    .then(payload => dispatch({type: GET_INGREDIENTS, payload}))
-*/
+
+// export const getIngredients =  () => async dispatch => 
+//   await fetch(`http://localhost:3001/ingredients`)
+//     .then(data => data.json())
+//     .then(payload => dispatch({type: GET_INGREDIENTS, payload}))
+
 
 //OBTIENE INGREDIENTES HARCODEADOS - ELIMINAR LUEGO DE IMPLEMENTAR EL ENDPOINT getIngredients
 export const getIngredients = () => ({

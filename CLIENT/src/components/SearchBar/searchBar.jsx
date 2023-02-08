@@ -5,7 +5,7 @@ import {
   setSearchValueName,
 } from "../../Redux/actions/index.js";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
-import { filterByDiet, setOrderBy } from "../../Redux/actions/index.js";
+import { filterByDiet, setOrderBy, getIngredients } from "../../Redux/actions/index.js";
 import s from "../SearchBar/searchBar.module.css";
 import Select from "react-select";
 
@@ -30,6 +30,7 @@ export default function SearchBar() {
   const handleOnSelect = (item) => {
     dispatch(setRecipeIdAutocomplete(item.id));
     dispatch(filterByDiet(""));
+    dispatch(getIngredients(item.id))
   };
 
   const handleOnFocus = () => {

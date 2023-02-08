@@ -1,5 +1,6 @@
 import React from "react";
 import s from "./RecipeCard.module.css";
+import { NavLink } from "react-router-dom";
 
 function RecipeCard({ id, title, image, diets }) {
   return (
@@ -19,7 +20,9 @@ function RecipeCard({ id, title, image, diets }) {
       </div>
 
       <div className={s.buttonDiv}>
-        <button>DETAILS</button>
+      <NavLink to={`/recipes/${id}`}>
+          <button>DETAILS</button>
+        </NavLink>
       </div>
     </div>
   );

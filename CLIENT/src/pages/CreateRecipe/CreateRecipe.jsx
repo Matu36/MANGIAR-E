@@ -4,6 +4,7 @@ import {getIngredients, createRecipe} from "../../Redux/actions";
 import {connect} from "react-redux";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import s from './CreateRecipe.module.css';
+import logo from "../../img/creandoReceta.jpg";
 //import {Redirect} from 'react-router-dom';
 
 class CreateRecipe extends React.Component {
@@ -95,31 +96,50 @@ class CreateRecipe extends React.Component {
     if (!this.props.ingredients) return (<h2>Loading ingredients...</h2>)
 
     return (
-      <div>
+      <div className= {s.container}>
+        <br />
+        <h1 className= {s.title}> Create Your Own Recipe! </h1>
+        <br />
+
+        <div className= {s.img}>
+        <img className= {s.image}src= {logo} alt="receta" />
+        </div>
         <form onSubmit={this.handleSubmit}>
           <table style={{width: '50%', margin: 'auto'}}>
+            <br />
+            
+            
+
+            <div className= {s.body}>
             <tbody>
               <tr>
-                <td width="50%"><label htmlFor="title">Title:</label></td>
-                <td><input type="text" id="title" name="title" value={this.state.title} placeholder="Recipe title..." onChange={this.handleOnChange} /></td>
+                <td width="50%"><label htmlFor className={s.label}>Title:</label></td>
+                <td><input className= {s.input} type="text" id="title" name="title" value={this.state.title} placeholder= "Recipe title..." onChange={this.handleOnChange} /></td>
               </tr>
               <tr><td colSpan={2} style={{fontSize: 'smaller', paddingBottom: '20px', color: this.state.error.title ? 'red' : 'green'}}>Title must be between 4 and 25 characters string</td></tr>
               <tr>
-                <td><label htmlFor="image">Image URL:</label></td>
-                <td><input type="url" id="image" name="image" value={this.state.image} placeholder="Recipe Image URL..." onChange={this.handleOnChange} /></td>
+                <td ><label  htmlFor className={s.label}>Image URL:</label></td>
+                <td><input className= {s.input}  type="url" id="image" name="image" value={this.state.image} placeholder="Recipe Image URL..." onChange={this.handleOnChange} /></td>
               </tr>
               <tr><td colSpan={2} style={{fontSize: 'smaller', paddingBottom: '20px', color: this.state.error.image ? 'red' : 'green'}}>URL must be an valid URL or empty</td></tr>
               <tr>
-                <td><label htmlFor="instructions">Instructions:</label></td>
-                <td><input type="text" id="instructions" name="instructions" value={this.state.instructions} placeholder="Recipe Instructions..." onChange={this.handleOnChange} /></td>
+                <td><label htmlFor className={s.label}>Instructions:</label></td>
+                <td><input className= {s.input}  type="text" id="instructions" name="instructions" value={this.state.instructions} placeholder="Recipe Instructions..." onChange={this.handleOnChange} /></td>
               </tr>
               <tr><td colSpan={2} style={{fontSize: 'smaller', paddingBottom: '20px', color: this.state.error.instructions ? 'red' : 'green'}}>Instructions length min 4</td></tr>
             </tbody>
+            </div>
+            
           </table>
-          <div style={{width: '50%', margin: 'auto', padding: '50px'}}>
+      
+          <div className= {s.table }>
             <Diets onChange={this.handleDiets} diets={this.props.diets.filter(el => el !== 'All Diets')} actives={this.state.diets} />
+            
           </div>
+          
           <div style={{width: '50%', margin: 'auto'}}>
+            
+            
             <ReactSearchAutocomplete
               showClear
               showNoResultsText="No ingredients finded..."
@@ -158,8 +178,10 @@ class CreateRecipe extends React.Component {
                 : <p style={{fontSize: 'smaller', paddingBottom: '20px', color: 'red'}}>Recipe must have at least one ingredient</p>
               }
           </div>
-          <p>Estimated cost of recipe: {this.state.ingredients.reduce((aux, el) => aux + el.price * el.amount, 0)}</p>
+          <div className= {s.pagfoot}>
+          <p className= {s.cost}>Estimated cost of recipe: {this.state.ingredients.reduce((aux, el) => aux + el.price * el.amount, 0)}</p>
           <input type="submit" value="Submit" disabled={Object.values(this.state.error).includes(true)}/>
+        </div>
         </form>
       </div>
     )
